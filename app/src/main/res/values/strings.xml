@@ -14,4 +14,19 @@
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="registration">registration?</string>
+    <string name="enter_mail">enter mail</string>
+    <string name="enter_password">enter password</string>
+    <string name="appimage">appImage</string>
+    <string name="hi">Привет гнида</string>
+    <string name="enter_your_email_address">Enter your email address</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="enter_your_age">Enter your age</string>
+    <string name="confirm_it">confirm it</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="confirm_it">confirm it</string>
+    <string name="enter_your_mail">Enter your mail</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="set_your_photo">Set your photo</string>
+    <string name="put_your_answer">Put your answer</string>
 </resources>

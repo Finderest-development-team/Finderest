@@ -13,7 +13,7 @@
         android:layout_marginTop="74dp"
         android:contentDescription="@string/appimage"
         android:scaleType="center"
-        android:src="@drawable/kot"
+        android:src="@drawable/app_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

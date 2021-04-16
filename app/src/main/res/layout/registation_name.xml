@@ -30,6 +30,18 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="83dp" />
 
+    <TextView
+        android:id="@+id/step"
+        android:layout_width="178dp"
+        android:layout_height="77dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Step №3"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="3dp" />
+
     <ProgressBar
         android:max="4"
         android:progress="2"
@@ -37,6 +49,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="410dp"
         android:layout_height="77dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

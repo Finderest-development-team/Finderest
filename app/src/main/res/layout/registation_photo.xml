@@ -15,7 +15,19 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
+        app:srcCompat="@android:drawable/ic_menu_gallery"/>
+
+    <TextView
+        android:id="@+id/step"
+        android:layout_width="178dp"
+        android:layout_height="77dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Step №4"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="3dp" />
 
     <ProgressBar
         android:id="@+id/progressBar4"
@@ -25,6 +37,7 @@
         android:layout_marginTop="6dp"
         android:max="4"
         android:progress="3"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

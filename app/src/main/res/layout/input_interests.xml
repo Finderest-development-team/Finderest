@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="ExtraText">
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -11,7 +12,7 @@
         android:layout_width="410dp"
         android:layout_height="77dp"
         android:layout_marginBottom="303dp"
-        android:max="10"
+        android:max="3"
         android:progress="0"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,11 +24,12 @@
         android:id="@+id/Question"
         android:layout_width="411dp"
         android:layout_height="0dp"
+        android:layout_marginTop="52dp"
         android:fontFamily="sans-serif-black"
-        android:text="QuestionTextView"
+        android:text="Question"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="@+id/progressBar2"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/progressBar2"
         app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
 
@@ -36,24 +38,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="288dp"
-        android:text="next"
+        android:text="@string/next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/answer"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/answer"
         app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
 
-    <EditText
+    <Switch
         android:id="@+id/answer"
-        android:layout_width="412dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="444dp"
+        android:layout_width="53dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="436dp"
+        android:autofillHints=""
         android:fontFamily="serif-monospace"
-        android:text="@string/put_your_answer"
+        android:inputType=""
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/Question"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Question" />
-    />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="LabelFor,MissingConstraints,UseSwitchCompatOrMaterialXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

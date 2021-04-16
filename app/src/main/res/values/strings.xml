@@ -26,4 +26,5 @@
     <string name="enter_your_mail">Enter your mail</string>
     <string name="set_your_photo">Set your photo</string>
     <string name="put_your_answer">Put your answer</string>
+    <string name="next_button">next</string>
 </resources>

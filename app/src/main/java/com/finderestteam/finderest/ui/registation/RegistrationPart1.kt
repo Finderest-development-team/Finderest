@@ -22,23 +22,34 @@ class RegistrationPart1 : AppCompatActivity() {
         val bar = findViewById<ProgressBar>(R.id.progressBar2)
         val ans = findViewById<Switch>(R.id.answer)
 
-        val arr = arrayOf("Do u like sport?","Do u want to find love?","Do u like cats?", "Lets move on")
+        val arr = arrayOf(
+            "Do u like sport?",
+            "Do u want to find love?",
+            "Do u like cats?",
+            "Lets move on"
+        )
         var i = 0
         ques.setText(arr[i])
-        ans.setOnClickListener {
-            Log.d("TAG", "Switch-${i.toString()} was activated")
+        ans.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked)
+                Log.d("TAG", "Switch-${i.toString()} was activated")
+            if (!isChecked)
+                Log.d("TAG", "Switch-${i.toString()} was not activated")
         }
         butt.setOnClickListener {
-            if(i < 3) {
-                ans.isChecked = false
-                ++i
-                ques.setText(arr[i])
+            ans.isChecked = false
+            ++i
+            if (i == 4) {
+                Log.d("TAG", "move to next part")
             }
-            bar.setProgress(i, true)
-            if(i == 3) {
+            if (i == 3) {
                 ans.visibility = View.INVISIBLE
+                ques.setText(arr[i])
+                bar.setProgress(i, true)
+            } else {
+                ques.setText(arr[i])
+                bar.setProgress(i, true)
             }
-            Log.d("TAG", "move to next registration part")
         }
     }
 }

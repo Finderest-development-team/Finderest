@@ -43,6 +43,7 @@ class RegistrationPart2 : AppCompatActivity() {
                 Log.d("TAG", "move to next part")
                 val int2 = Intent(this, RegistrationPart3::class.java)
                 startActivityForResult(int2, 2)
+                overridePendingTransition(R.anim.transition_in, R.anim.transition_out)
             }
             if (i == 3) {
                 ans.visibility = View.INVISIBLE

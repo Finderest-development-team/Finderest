@@ -18,6 +18,7 @@ class RegistrationPart1 : AppCompatActivity() {
         butt.setOnClickListener {
             val int = Intent(this, RegistrationPart2::class.java)
             startActivityForResult(int, 1)
+            overridePendingTransition(R.anim.transition_in, R.anim.transition_out)
         }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

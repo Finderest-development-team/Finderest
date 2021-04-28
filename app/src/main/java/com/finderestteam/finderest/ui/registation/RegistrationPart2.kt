@@ -17,30 +17,39 @@ class RegistrationPart2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.input_interests)
+        findViewById<TextView>(R.id.Question).setText("Do u like sport?")
+        findViewById<Switch>(R.id.answer).setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked)
+                Log.d("TAG", "Switch was activated")
+            if (!isChecked) {
+            }
+        }
     }
     @RequiresApi(Build.VERSION_CODES.N)
     fun que1(view:View){
-        findViewById<TextView>(R.id.Question).setText("Do u like sport?")
+        findViewById<TextView>(R.id.Question).setText("Do u want to find love?")
         findViewById<ProgressBar>(R.id.progressBar2).setProgress(1, true)
         findViewById<Button>(R.id.button).visibility = View.GONE
         findViewById<Button>(R.id.button2).visibility = View.VISIBLE
+        findViewById<Switch>(R.id.answer).isChecked = false
     }
     @RequiresApi(Build.VERSION_CODES.N)
     fun que2(view:View){
-        findViewById<TextView>(R.id.Question).setText("Do u want to find love?")
+        findViewById<TextView>(R.id.Question).setText("Do u like cats?")
         findViewById<ProgressBar>(R.id.progressBar2).setProgress(2, true)
         findViewById<Button>(R.id.button2).visibility = View.GONE
         findViewById<Button>(R.id.button3).visibility = View.VISIBLE
+        findViewById<Switch>(R.id.answer).isChecked = false
     }
     @RequiresApi(Build.VERSION_CODES.N)
     fun que3(view:View){
-        findViewById<TextView>(R.id.Question).setText("Do u like cats?")
+        findViewById<TextView>(R.id.Question).setText("Lets move on")
         findViewById<ProgressBar>(R.id.progressBar2).setProgress(3, true)
         findViewById<Button>(R.id.button3).visibility = View.GONE
         findViewById<Button>(R.id.button4).visibility = View.VISIBLE
+        findViewById<Switch>(R.id.answer).visibility = View.INVISIBLE
     }
     fun goNext(view:View){
-        findViewById<TextView>(R.id.Question).setText("Lets move on")
         val int2 = Intent(this, RegistrationPart3::class.java)
         startActivityForResult(int2, 2)
         overridePendingTransition(R.anim.transition_in, R.anim.transition_out)

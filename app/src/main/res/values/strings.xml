@@ -28,4 +28,6 @@
     <string name="put_your_answer">Put your answer</string>
     <string name="next_button">next</string>
     <string name="next">next</string>
+    <string name="enter">enter</string>
+    <string name="login_out">Login out</string>
 </resources>

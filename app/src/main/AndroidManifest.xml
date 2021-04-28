@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity2"></activity>
+        <activity android:name=".ui.registation.RegistrationPart1" />
+        <activity android:name=".ui.registation.RegistrationPart2" />
+        <activity android:name=".ui.registation.RegistrationPart3" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

@@ -17,10 +17,9 @@ class RegistrationPart3 : AppCompatActivity() {
         setContentView(R.layout.whole_registration_02)
     }
 
-    val bar = findViewById<ProgressBar>(R.id.progressBar5)
-
     @RequiresApi(Build.VERSION_CODES.N)
     fun button1(view: View){
+        val bar = findViewById<ProgressBar>(R.id.progressBar5)
         bar.setProgress(1,true)
         val lay1 = findViewById<ConstraintLayout>(R.id.Layout1)
         val lay2 = findViewById<ConstraintLayout>(R.id.Layout2)
@@ -30,6 +29,7 @@ class RegistrationPart3 : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun button2(view: View){
+        val bar = findViewById<ProgressBar>(R.id.progressBar5)
         bar.setProgress(2,true)
         val lay2 = findViewById<ConstraintLayout>(R.id.Layout2)
         val lay3 = findViewById<ConstraintLayout>(R.id.Layout3)
@@ -38,6 +38,7 @@ class RegistrationPart3 : AppCompatActivity() {
     }
     @RequiresApi(Build.VERSION_CODES.N)
     fun button3(view: View){
+        val bar = findViewById<ProgressBar>(R.id.progressBar5)
         bar.setProgress(3,true)
         val lay3 = findViewById<ConstraintLayout>(R.id.Layout3)
         val lay4 = findViewById<ConstraintLayout>(R.id.Layout4)
@@ -46,9 +47,10 @@ class RegistrationPart3 : AppCompatActivity() {
     }
     @RequiresApi(Build.VERSION_CODES.N)
     fun button4(view: View){
+        val bar = findViewById<ProgressBar>(R.id.progressBar5)
         bar.setProgress(4,true)
-        val no = Toast.makeText(this, "End of the registration", Toast.LENGTH_SHORT)
-        no.show()
+        val mess = Toast.makeText(this, "End of the registration", Toast.LENGTH_SHORT)
+        mess.show()
         val int2 = Intent()
         int2.putExtra("name","data3")
         setResult(2, int2)

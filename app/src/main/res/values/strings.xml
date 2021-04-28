@@ -28,5 +28,10 @@
     <string name="put_your_answer">Put your answer</string>
     <string name="next_button">next</string>
     <string name="next">next</string>
+<<<<<<< HEAD
     <string name="question">Question</string>
+=======
+    <string name="enter">enter</string>
+    <string name="login_out">Login out</string>
+>>>>>>> e4eccc3698f426a15c10e0a6e9c51c981a826528
 </resources>

@@ -14,7 +14,7 @@ class RegistrationPart1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
-        val butt = findViewById<Button>(R.id.registarationButton)
+        val butt = findViewById<Button>(R.id.registrationButton)
         butt.setOnClickListener {
             val int = Intent(this, RegistrationPart2::class.java)
             startActivityForResult(int, 1)

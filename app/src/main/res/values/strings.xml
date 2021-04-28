@@ -28,4 +28,5 @@
     <string name="put_your_answer">Put your answer</string>
     <string name="next_button">next</string>
     <string name="next">next</string>
+    <string name="question">Question</string>
 </resources>

@@ -36,32 +36,27 @@
         android:id="@+id/editTextTextPassword"
         android:layout_width="160dp"
         android:layout_height="48dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="340dp"
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPassword"
         android:visibility="visible"
-<<<<<<< HEAD
-        app:layout_constraintBottom_toTopOf="@+id/registrationButton"
-=======
->>>>>>> e4eccc3698f426a15c10e0a6e9c51c981a826528
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
-        tools:ignore="LabelFor" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/registrationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
         android:text="@string/registration"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pas"
-        app:layout_constraintVertical_bias="0.511"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -94,11 +89,13 @@
         android:id="@+id/enterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
         android:text="@string/enter"
         app:layout_constraintBottom_toTopOf="@+id/registarationButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,UnknownId" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

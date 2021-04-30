@@ -9,14 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-        <activity android:name=".ui.LoginActivity"></activity>
-=======
-        <activity android:name=".MainActivity2"></activity>
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".MainActivity2" />
         <activity android:name=".ui.registation.RegistrationPart1" />
         <activity android:name=".ui.registation.RegistrationPart2" />
         <activity android:name=".ui.registation.RegistrationPart3" />
->>>>>>> e4eccc3698f426a15c10e0a6e9c51c981a826528
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

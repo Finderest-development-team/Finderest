@@ -9,7 +9,11 @@
         android:id="@+id/navigation_profile"
         android:name="com.finderestteam.finderest.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_profile_editor"
+            app:destination="@id/navigation_profile_editor" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_find"
@@ -22,4 +26,10 @@
         android:name="com.finderestteam.finderest.ui.chats.ChatsFragment"
         android:label="@string/title_chats"
         tools:layout="@layout/fragment_chats" />
+
+    <fragment
+        android:id="@+id/navigation_profile_editor"
+        android:name="com.finderestteam.finderest.ui.profile.ProfileEditor"
+        android:label="О себе"
+        tools:layout="@layout/fragment_profile_editor" />
 </navigation>

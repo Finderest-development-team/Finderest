@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.finderestteam.finderest.R
@@ -35,7 +38,14 @@ class ProfileFragment : Fragment() {
         profileViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
-        root.Button5.setOnClickListener { NavHostFragment.findNavController(this).navigate(R.id.navigation_profile_editor) }
+        val imageView = root.findViewById<ImageButton>(R.id.imageButton)
+        root.Button5.setOnClickListener {
+            //оно не работает как надо, нет анимации я хз почему
+            val extras = FragmentNavigatorExtras(
+                imageView to "imageView"
+            )
+            NavHostFragment.findNavController(this).navigate(R.id.navigation_profile_editor, null, null, extras)
+        }
 
         return root
     }

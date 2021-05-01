@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "408605256292",
+    "project_id": "finderest-b1bdf",
+    "storage_bucket": "finderest-b1bdf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408605256292:android:b8b65e5e1a95ac2d4ccd71",
+        "android_client_info": {
+          "package_name": "com.finderestteam.finderest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "408605256292-4d261oo1c83bi3ffmebblf2k45589kro.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.finderestteam.finderest",
+            "certificate_hash": "c856e0a9422fc71c1ed0cb0d8f1a55e96ff81885"
+          }
+        },
+        {
+          "client_id": "408605256292-gif29h7umbf681889pskcn4ii483runk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOpDQ-ikXb--HaIlovUXKc5kjV-I71xXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "408605256292-gif29h7umbf681889pskcn4ii483runk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

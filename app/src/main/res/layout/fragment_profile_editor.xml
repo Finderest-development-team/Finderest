@@ -6,11 +6,11 @@
     android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="410dp"
-        android:layout_height="260dp"
+        android:id="@+id/imageButton"
+        android:layout_width="414dp"
+        android:layout_height="243dp"
+        android:transitionName=" imageView "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_camera" />
@@ -23,13 +23,14 @@
         android:layout_marginTop="76dp"
         android:text="About me"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="376dp"
         android:layout_height="84dp"
         android:text="TextView"
+        android:background="@drawable/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +39,7 @@
     <Button
         android:id="@+id/button10"
         android:layout_width="377dp"
-        android:layout_height="39dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Change my interests"
@@ -50,10 +51,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/back"
         android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
     <TextView
         android:id="@+id/textView9"
@@ -62,15 +64,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:text="Surname"
+        android:background="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Button
         android:id="@+id/button11"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="95dp"
+        android:layout_height="40dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/round_button"
         android:text="save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

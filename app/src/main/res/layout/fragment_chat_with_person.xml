@@ -11,15 +11,17 @@
         android:id="@+id/ButtonSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_send_button"
         android:tint="@android:color/black"
         app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/TextLayOut"
+        app:layout_constraintTop_toBottomOf="@+id/ListOfMessages"
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -29,7 +31,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ButtonSend"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ListOfMessages"
         app:layout_constraintVertical_bias="0.0"
@@ -45,13 +46,13 @@
 
     <ListView
         android:id="@+id/ListOfMessages"
-        android:layout_width="409dp"
-        android:layout_height="629dp"
-        app:layout_constraintBottom_toTopOf="@+id/ButtonSend"
+        android:layout_width="413dp"
+        android:layout_height="531dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.435"
         tools:ignore="MissingConstraints">
 
     </ListView>

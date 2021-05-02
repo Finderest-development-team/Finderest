@@ -35,7 +35,8 @@ class RegistrationPart1 : AppCompatActivity() {
             return
         when (resultCode) {
             1 -> {
-                Log.d("TAG", "A1 $data")
+                val arr = data.getStringArrayExtra("result.code.registrationpart2")
+                Toast.makeText(this, "End of the registration ur mail:${arr?.get(0)} ur password: ${arr?.get(1)} ur name: ${arr?.get(2)}", Toast.LENGTH_SHORT).show()
             }
             else -> {
                 Log.d("TAG", "Smth went wrong")

@@ -25,7 +25,11 @@
         android:id="@+id/navigation_chats"
         android:name="com.finderestteam.finderest.ui.chats.ChatsFragment"
         android:label="@string/title_chats"
-        tools:layout="@layout/fragment_chats" />
+        tools:layout="@layout/fragment_chats" >
+        <action
+            android:id="@+id/action_navigation_chats_to_navigation_chat"
+            app:destination="@id/navigation_chat" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile_editor"
@@ -34,7 +38,7 @@
         tools:layout="@layout/fragment_profile_editor" />
     <fragment
         android:id="@+id/navigation_chat"
-        android:name="com.finderestteam.finderest.ui.chats.ChatsFragment"
+        android:name="com.finderestteam.finderest.ui.chats.Chat"
         android:label="@string/title_chats"
         tools:layout="@layout/fragment_chat_with_person" />
 </navigation>

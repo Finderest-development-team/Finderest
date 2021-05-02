@@ -6,5 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.chats.ChatsFragment"
     tools:ignore="ExtraText">
-
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:textSize="20sp"
+            tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

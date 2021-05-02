@@ -7,11 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.finderestteam.finderest.R
-import androidx.navigation.fragment.NavHostFragment
-import kotlinx.android.synthetic.main.fragment_chats.view.*
 
-
-class ChatsFragment : Fragment() {
+class Chat : Fragment() {
 
     private lateinit var homeViewModel: ChatsViewModel
 
@@ -21,12 +18,8 @@ class ChatsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         homeViewModel =
-                ViewModelProviders.of(this).get(ChatsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_chats, container, false)
-        root.button13.setOnClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.navigation_chat)
-        }
-
+            ViewModelProviders.of(this).get(ChatsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_chat_with_person, container, false)
         return root
     }
 }

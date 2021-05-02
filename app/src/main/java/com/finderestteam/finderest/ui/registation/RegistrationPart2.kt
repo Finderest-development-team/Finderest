@@ -60,8 +60,9 @@ class RegistrationPart2 : AppCompatActivity() {
             return
         when (resultCode) {
             2 -> {
+                val data1 = data.getStringArrayExtra("result.code.registrationpart3")
                 val int1 = Intent()
-                int1.putExtra("name","data2")
+                int1.putExtra("result.code.registrationpart2",data1)
                 setResult(1, int1)
                 finish()}
             else -> {Log.d("TAG","Smth went wrong")}

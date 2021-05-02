@@ -12,16 +12,21 @@ import androidx.annotation.RequiresApi
 import com.finderestteam.finderest.R
 
 class RegistrationPart2 : AppCompatActivity() {
+    private var arr = arrayOf("false", "false", "false")
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.input_interests)
         findViewById<TextView>(R.id.Question).setText("Do u like sport?")
-        findViewById<Switch>(R.id.answer).setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked)
+        findViewById<Switch>(R.id.answer).setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
                 Log.d("TAG", "Switch was activated")
-            if (!isChecked) {
+                when{
+                    findViewById<Button>(R.id.button).visibility == View.VISIBLE ->{arr[0]="true"}
+                    findViewById<Button>(R.id.button2).visibility == View.VISIBLE ->{arr[1]="true"}
+                    findViewById<Button>(R.id.button3).visibility == View.VISIBLE ->{arr[2]="true"}
+                }
             }
         }
     }
@@ -60,7 +65,7 @@ class RegistrationPart2 : AppCompatActivity() {
             return
         when (resultCode) {
             2 -> {
-                val data1 = data.getStringArrayExtra("result.code.registrationpart3")
+                var data1 = data.getStringArrayExtra("result.code.registrationpart3")?.plus(arr)
                 val int1 = Intent()
                 int1.putExtra("result.code.registrationpart2",data1)
                 setResult(1, int1)

@@ -83,8 +83,6 @@ class RegistrationPart3 : AppCompatActivity() {
     fun button4(view: View){
         val bar = findViewById<ProgressBar>(R.id.progressBar5)
         bar.setProgress(4, true)
-        val mess = Toast.makeText(this, "End of the registration", Toast.LENGTH_SHORT)
-        mess.show()
         val int2 = Intent()
         val arr = arrayOf(mail, password, name)
         int2.putExtra("result.code.registrationpart3", arr)

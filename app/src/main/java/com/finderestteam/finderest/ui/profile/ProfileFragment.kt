@@ -21,7 +21,6 @@ import androidx.navigation.fragment.findNavController
 import com.finderestteam.finderest.R
 import com.finderestteam.finderest.ui.registation.RegistrationPart3
 import kotlinx.android.synthetic.main.fragment_profile.view.*
-
 class ProfileFragment : Fragment() {
 
     private lateinit var profileViewModel: ProfileViewModel

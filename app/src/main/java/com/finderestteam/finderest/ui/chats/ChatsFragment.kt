@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.NavHostFragment
 import com.finderestteam.finderest.R
+import kotlinx.android.synthetic.main.fragment_chats.view.*
+import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 class ChatsFragment : Fragment() {
 
@@ -21,11 +23,6 @@ class ChatsFragment : Fragment() {
     ): View? {
         homeViewModel =
                 ViewModelProviders.of(this).get(ChatsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_chats, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        return inflater.inflate(R.layout.fragment_chats, container, false)
     }
 }

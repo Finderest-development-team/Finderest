@@ -26,6 +26,7 @@
         android:layout_marginTop="43dp"
         android:autofillHints=""
         android:ems="10"
+        android:hint="@string/enter_mail"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +40,7 @@
         android:layout_marginTop="340dp"
         android:autofillHints=""
         android:ems="10"
+        android:hint="@string/enter_password"
         android:inputType="textPassword"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,32 +60,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
         tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/log"
-        android:layout_width="103dp"
-        android:layout_height="29dp"
-        android:fontFamily="serif-monospace"
-        android:text="@string/enter_mail"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/pas"
-        android:layout_width="123dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="serif-monospace"
-        android:text="@string/enter_password"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/editTextTextPassword" />
 
     <Button
         android:id="@+id/enterButton"

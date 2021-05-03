@@ -3,16 +3,16 @@ package com.finderestteam.finderest.ui.registation
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.finderestteam.finderest.R
+
 
 class RegistrationPart3 : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
@@ -23,6 +23,11 @@ class RegistrationPart3 : AppCompatActivity() {
     private var mail:String = ""
     private var password:String = ""
     private var name:String = ""
+    var photo: ImageView? = null
+
+    private fun hasPermission(): Boolean {
+        return true
+    }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun button1(view: View){
@@ -61,6 +66,11 @@ class RegistrationPart3 : AppCompatActivity() {
         lay2.visibility = View.GONE
         lay3.visibility = View.VISIBLE
     }
+    fun loadPhoto(view: View){
+        val loadIntent =
+            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(loadIntent, 1)
+    }
     @RequiresApi(Build.VERSION_CODES.N)
     fun button3(view: View){
         val bar = findViewById<ProgressBar>(R.id.progressBar5)
@@ -89,4 +99,13 @@ class RegistrationPart3 : AppCompatActivity() {
         setResult(2, int2)
         finish()
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        //я не понимаю как получить uri фотки которую мы выбрали
+        val u = intent.data
+        Toast.makeText(this, "imageuRI: $u", Toast.LENGTH_SHORT).show()
+        findViewById<ImageButton>(R.id.imageButton2).setImageURI(u)
+    }
 }
+

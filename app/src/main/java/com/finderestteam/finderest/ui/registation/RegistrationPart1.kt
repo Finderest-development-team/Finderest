@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import com.finderestteam.finderest.MainActivity2
 import com.finderestteam.finderest.R
+import com.finderestteam.finderest.PersonData
 
 class RegistrationPart1 : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
@@ -36,7 +37,14 @@ class RegistrationPart1 : AppCompatActivity() {
         when (resultCode) {
             1 -> {
                 val arr = data.getStringArrayExtra("result.code.registrationpart2")
-                Toast.makeText(this, "End of the registration ur mail:${arr?.get(0)} ur password: ${arr?.get(1)} ur name: ${arr?.get(2)} and ur interests: ${arr?.get(3)},${arr?.get(4)},${arr?.get(5)}", Toast.LENGTH_SHORT).show()
+                val name = arr?.get(2)
+                val mail = arr?.get(0)
+                val password = arr?.get(1)
+                val interests = arrayOf(arr?.get(3), arr?.get(4), arr?.get(5))
+                val person = PersonData(name, mail, password, interests)
+                //я не знаю почему не работает
+                findViewById<EditText>(R.id.editTextTextEmailAddress).setText(person.getMail())
+                findViewById<EditText>(R.id.editTextTextPassword).setText(person.getPassword())
             }
             else -> {
                 Log.d("TAG", "Smth went wrong")

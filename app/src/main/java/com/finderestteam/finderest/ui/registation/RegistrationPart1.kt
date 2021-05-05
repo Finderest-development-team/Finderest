@@ -72,13 +72,6 @@ class RegistrationPart1 : AppCompatActivity() {
             }
         }
     }
-    private fun checkForNull(arr: Array<String?>):Boolean{
-        for(i in arr){
-            if(i == null)
-                return false
-        }
-        return true
-    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data == null)
@@ -100,15 +93,16 @@ class RegistrationPart1 : AppCompatActivity() {
                     arr?.get(10),
                     arr?.get(11)
                 )
-                if(name==null || mail1==null || password1==null || checkForNull(interests)){
-                    Toast.makeText(this, "Item in registration is missing in: RegPart1", Toast.LENGTH_SHORT).show()
+                if(name==null || mail1==null || password1==null){
+                    Toast.makeText(this, "Item in registration is missing in 0.1", Toast.LENGTH_SHORT).show()
                 }else{
-                    val person = PersonData(name, mail1, password1, interests)
+                    /*if(interests == null){
+                        Toast.makeText(this, "Item in input interests is missing", Toast.LENGTH_SHORT).show()
+                    }else{
+                        val person = PersonData(name, mail1, password1, interests)
+                    }*/
                     signInNewUser(mail1,password1)
-                    findViewById<EditText>(R.id.editTextTextEmailAddress).setText(person.getMail())
-                    findViewById<EditText>(R.id.editTextTextPassword).setText(person.getPassword())
                 }
-
             }
             else -> {
                 Log.d("TAG", "Smth went wrong")

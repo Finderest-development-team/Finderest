@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.finderestteam.finderest.ui.registation.RegistrationPart1
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +31,8 @@ class MainActivity2 : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
     fun logout(view: View){
-        val mess = Toast.makeText(this, "log out", Toast.LENGTH_SHORT)
-        mess.show()
+        FirebaseAuth.getInstance().signOut();
+        Toast.makeText(this, "log out", Toast.LENGTH_SHORT).show()
         val int = Intent(this, RegistrationPart1::class.java)
         startActivity(int)
         overridePendingTransition(R.anim.transition_in, R.anim.transition_out)

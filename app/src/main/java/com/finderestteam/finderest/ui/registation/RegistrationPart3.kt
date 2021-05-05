@@ -12,6 +12,9 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.finderestteam.finderest.R
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
 
 
 class RegistrationPart3 : AppCompatActivity() {
@@ -50,21 +53,25 @@ class RegistrationPart3 : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun button2(view: View){
-        val bar = findViewById<ProgressBar>(R.id.progressBar5)
-        bar.setProgress(2, true)
-        findViewById<EditText>(R.id.editTextTextEmailPassword2).addTextChangedListener(object :
-            TextWatcher {
-            override fun afterTextChanged(s: Editable) {
-                password = s.toString()
-            }
+        if(findViewById<EditText>(R.id.editTextTextEmailPassword2).text.toString() == findViewById<EditText>(R.id.editTextNumberPassword3).text.toString()) {
+            val bar = findViewById<ProgressBar>(R.id.progressBar5)
+            bar.setProgress(2, true)
+            findViewById<EditText>(R.id.editTextTextEmailPassword2).addTextChangedListener(object :
+                TextWatcher {
+                override fun afterTextChanged(s: Editable) {
+                    password = s.toString()
+                }
+                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-        })
-        val lay2 = findViewById<ConstraintLayout>(R.id.Layout2)
-        val lay3 = findViewById<ConstraintLayout>(R.id.Layout3)
-        lay2.visibility = View.GONE
-        lay3.visibility = View.VISIBLE
+                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            })
+            val lay2 = findViewById<ConstraintLayout>(R.id.Layout2)
+            val lay3 = findViewById<ConstraintLayout>(R.id.Layout3)
+            lay2.visibility = View.GONE
+            lay3.visibility = View.VISIBLE
+        }else{
+            Toast.makeText(this, "You didn't confirm your password", Toast.LENGTH_SHORT).show()
+        }
     }
     fun loadPhoto(view: View){
         val loadIntent =
@@ -99,7 +106,6 @@ class RegistrationPart3 : AppCompatActivity() {
         setResult(2, int2)
         finish()
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         //я не понимаю как получить uri фотки которую мы выбрали

@@ -78,4 +78,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.firebaseui:firebase-ui:0.6.2'
+
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 }

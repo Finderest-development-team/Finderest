@@ -4,8 +4,19 @@ class PersonData(_userName:String, _userMail:String, _userPassword:String, _user
     private val userName = _userName
     private val userMail = _userMail
     private val userPassword = _userPassword
-    private val userListOfInterests = _userListOfInterests
     //private val userPhoto = _userPhoto
+
+    private val  _userListOfInterests = _userListOfInterests
+    private val userListOfInterests = getRidOfUninteresting()
+
+    private fun getRidOfUninteresting():List<String>{
+        val arr = mutableListOf<String> ( "I like sport", "I want to find love", "I like cats" )
+        for ((i, v) in this._userListOfInterests.withIndex()){
+            if(!v.toBoolean())
+                arr.removeAt(i)
+        }
+        return arr
+    }
     fun getName(): String {
         return userName
     }
@@ -15,7 +26,7 @@ class PersonData(_userName:String, _userMail:String, _userPassword:String, _user
     fun getPassword(): String {
         return userPassword
     }
-    fun getListOfInterests(): Array<String> {
+    fun getListOfInterests(): List<String> {
         return userListOfInterests
     }
     /*fun getPhoto(): URI? {

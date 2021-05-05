@@ -114,4 +114,3 @@ class RegistrationPart3 : AppCompatActivity() {
         findViewById<ImageButton>(R.id.imageButton2).setImageURI(u)
     }
 }
-

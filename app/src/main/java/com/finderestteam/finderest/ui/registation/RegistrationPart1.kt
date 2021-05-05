@@ -72,6 +72,13 @@ class RegistrationPart1 : AppCompatActivity() {
             }
         }
     }
+    private fun checkForNulls(array: Array<String?>): Boolean {
+        for(i in array){
+            if(i == null)
+                return true
+        }
+        return false
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data == null)
@@ -93,14 +100,19 @@ class RegistrationPart1 : AppCompatActivity() {
                     arr?.get(10),
                     arr?.get(11)
                 )
+                if(checkForNulls(interests) || name==null || mail1==null || password1==null){
+                    Toast.makeText(this, "Interests are not fine", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "${arr?.get(3)}, ${arr?.get(4)}, ${arr?.get(5)}, ${arr?.get(6)}, " +
+                            "${arr?.get(7)}, ${arr?.get(8)}, ${arr?.get(9)}, ${arr?.get(10)}, ${arr?.get(11)}", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this, "Interests are fine", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "${arr?.get(3)}, ${arr?.get(4)}, ${arr?.get(5)}, ${arr?.get(6)}, " +
+                            "${arr?.get(7)}, ${arr?.get(8)}, ${arr?.get(9)}, ${arr?.get(10)}, ${arr?.get(11)}", Toast.LENGTH_SHORT).show()
+                    val person = PersonData(name, mail1, password1, interests)
+                }
                 if(name==null || mail1==null || password1==null){
                     Toast.makeText(this, "Item in registration is missing in 0.1", Toast.LENGTH_SHORT).show()
                 }else{
-                    /*if(interests == null){
-                        Toast.makeText(this, "Item in input interests is missing", Toast.LENGTH_SHORT).show()
-                    }else{
-                        val person = PersonData(name, mail1, password1, interests)
-                    }*/
                     signInNewUser(mail1,password1)
                 }
             }

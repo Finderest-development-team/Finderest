@@ -10,7 +10,7 @@ class PersonData(_userName:String, _userMail:String, _userPassword:String, _user
     private val userListOfInterests = getRidOfUninteresting()
 
     private fun getRidOfUninteresting():List<String>{
-        val arr = mutableListOf<String> ( "I like sport", "I want to find love", "I like cats" )
+        val arr = mutableListOf<String> ( "Sport", "Technologies", "Animals", "Gamer", "Education", "Parties", "Travelling", "Art", "Walking")
         for ((i, v) in this._userListOfInterests.withIndex()){
             if(!v.toBoolean())
                 arr.removeAt(i)

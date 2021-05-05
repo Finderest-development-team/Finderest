@@ -18,6 +18,7 @@
     <string name="enter_mail">enter mail</string>
     <string name="enter_password">enter password</string>
     <string name="appimage">appImage</string>
+    <string name="appbackground">appImage</string>
     <string name="enter_your_email_address">Enter your email address</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="enter_your_age">Enter your age</string>

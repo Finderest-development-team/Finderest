@@ -28,7 +28,7 @@ class RegistrationPart1 : AppCompatActivity() {
         val butt2 = findViewById<Button>(R.id.enterButton)
         butt2.setOnClickListener {
             if(findViewById<EditText>(R.id.editTextTextEmailAddress).text.toString() == "" && findViewById<EditText>(R.id.editTextTextPassword).text.toString() == "") {
-                Toast.makeText(this, "You have an empty field", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "You have an empty fields", Toast.LENGTH_SHORT).show()
             }else{
                 signInExistingUser(
                     findViewById<EditText>(R.id.editTextTextEmailAddress).text.toString(),
@@ -86,7 +86,13 @@ class RegistrationPart1 : AppCompatActivity() {
                 val interests = arrayOf(
                     arr?.get(3).toString(),
                     arr?.get(4).toString(),
-                    arr?.get(5).toString()
+                    arr?.get(5).toString(),
+                    arr?.get(6).toString(),
+                    arr?.get(7).toString(),
+                    arr?.get(8).toString(),
+                    arr?.get(9).toString(),
+                    arr?.get(10).toString(),
+                    arr?.get(11).toString()
                 )
                 val person = PersonData(name, mail1, password1, interests)
                 //я не знаю почему не работает

@@ -79,5 +79,18 @@ dependencies {
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.firebaseui:firebase-ui:0.6.2'
 
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
+    implementation 'com.google.firebase:firebase-auth:20.0.4'
+
+    implementation "com.google.firebase:firebase-core:18.0.3"
+    implementation "com.google.firebase:firebase-auth:20.0.4"
+    implementation "com.google.firebase:firebase-storage:19.2.2"
+    implementation "com.google.firebase:firebase-database:19.7.0"
+    implementation "com.google.firebase:firebase-messaging:21.1.0"
+    implementation "com.google.firebase:firebase-config:20.0.4"
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
+    implementation 'com.kelvinapps:rxfirebase:0.0.16'
+    implementation 'com.firebaseui:firebase-ui-database:1.2.0'
 }

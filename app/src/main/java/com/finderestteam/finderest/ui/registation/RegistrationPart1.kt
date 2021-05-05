@@ -72,7 +72,13 @@ class RegistrationPart1 : AppCompatActivity() {
             }
         }
     }
-
+    private fun checkForNull(arr: Array<String?>):Boolean{
+        for(i in arr){
+            if(i == null)
+                return false
+        }
+        return true
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data == null)
@@ -80,25 +86,29 @@ class RegistrationPart1 : AppCompatActivity() {
         when (resultCode) {
             1 -> {
                 val arr = data.getStringArrayExtra("result.code.registrationpart2")
-                val name = arr?.get(2).toString()
-                val mail1 = arr?.get(0).toString()
-                val password1 = arr?.get(1).toString()
+                val name = arr?.get(2)
+                val mail1 = arr?.get(0)
+                val password1 = arr?.get(1)
                 val interests = arrayOf(
-                    arr?.get(3).toString(),
-                    arr?.get(4).toString(),
-                    arr?.get(5).toString(),
-                    arr?.get(6).toString(),
-                    arr?.get(7).toString(),
-                    arr?.get(8).toString(),
-                    arr?.get(9).toString(),
-                    arr?.get(10).toString(),
-                    arr?.get(11).toString()
+                    arr?.get(3),
+                    arr?.get(4),
+                    arr?.get(5),
+                    arr?.get(6),
+                    arr?.get(7),
+                    arr?.get(8),
+                    arr?.get(9),
+                    arr?.get(10),
+                    arr?.get(11)
                 )
-                val person = PersonData(name, mail1, password1, interests)
-                //я не знаю почему не работает
-                signInNewUser(mail1,password1)
-                findViewById<EditText>(R.id.editTextTextEmailAddress).setText(person.getMail())
-                findViewById<EditText>(R.id.editTextTextPassword).setText(person.getPassword())
+                if(name==null || mail1==null || password1==null || checkForNull(interests)){
+                    Toast.makeText(this, "Item in registration is missing in: RegPart1", Toast.LENGTH_SHORT).show()
+                }else{
+                    val person = PersonData(name, mail1, password1, interests)
+                    signInNewUser(mail1,password1)
+                    findViewById<EditText>(R.id.editTextTextEmailAddress).setText(person.getMail())
+                    findViewById<EditText>(R.id.editTextTextPassword).setText(person.getPassword())
+                }
+
             }
             else -> {
                 Log.d("TAG", "Smth went wrong")

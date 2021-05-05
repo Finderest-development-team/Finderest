@@ -37,11 +37,13 @@ class RegistrationPart3 : AppCompatActivity() {
         findViewById<EditText>(R.id.editTextTextEmailAddress2).addTextChangedListener(object :
             TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                mail = s.toString()
+                mail = findViewById<EditText>(R.id.editTextTextEmailAddress2).text.toString()
             }
 
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
         })
         val bar = findViewById<ProgressBar>(R.id.progressBar5)
         bar.setProgress(1, true)
@@ -59,11 +61,13 @@ class RegistrationPart3 : AppCompatActivity() {
             findViewById<EditText>(R.id.editTextTextEmailPassword2).addTextChangedListener(object :
                 TextWatcher {
                 override fun afterTextChanged(s: Editable) {
-                    password = s.toString()
+                    password = findViewById<EditText>(R.id.editTextTextEmailPassword2).text.toString()
                 }
-                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                }
 
-                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                }
             })
             val lay2 = findViewById<ConstraintLayout>(R.id.Layout2)
             val lay3 = findViewById<ConstraintLayout>(R.id.Layout3)
@@ -85,16 +89,19 @@ class RegistrationPart3 : AppCompatActivity() {
         findViewById<EditText>(R.id.editTextTextPersonName2).addTextChangedListener(object :
             TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                name = s.toString()
+                name = findViewById<EditText>(R.id.editTextTextPersonName2).text.toString()
             }
 
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
         })
         val lay3 = findViewById<ConstraintLayout>(R.id.Layout3)
         val lay4 = findViewById<ConstraintLayout>(R.id.Layout4)
         lay3.visibility = View.GONE
         lay4.visibility = View.VISIBLE
+        Toast.makeText(this, "R3: $mail $password $name", Toast.LENGTH_SHORT).show()
     }
     @RequiresApi(Build.VERSION_CODES.N)
     fun button4(view: View){

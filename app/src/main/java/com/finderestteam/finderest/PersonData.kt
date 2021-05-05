@@ -1,6 +1,6 @@
 package com.finderestteam.finderest
 
-class PersonData(_userName:String, _userMail:String, _userPassword:String, _userListOfInterests: Array<String>/*, _userPhoto:URI?*/) {
+class PersonData(_userName:String, _userMail:String, _userPassword:String, _userListOfInterests: Array<String?>/*, _userPhoto:URI?*/) {
     private val userName = _userName
     private val userMail = _userMail
     private val userPassword = _userPassword
@@ -12,8 +12,10 @@ class PersonData(_userName:String, _userMail:String, _userPassword:String, _user
     private fun getRidOfUninteresting():List<String>{
         val arr = mutableListOf<String> ( "Sport", "Technologies", "Animals", "Gamer", "Education", "Parties", "Travelling", "Art", "Walking")
         for ((i, v) in this._userListOfInterests.withIndex()){
-            if(!v.toBoolean())
-                arr.removeAt(i)
+            if (v != null) {
+                if(!v.toBoolean())
+                    arr.removeAt(i)
+            }
         }
         return arr
     }

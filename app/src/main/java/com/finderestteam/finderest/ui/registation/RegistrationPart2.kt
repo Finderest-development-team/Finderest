@@ -128,6 +128,11 @@ class RegistrationPart2 : AppCompatActivity() {
         when (resultCode) {
             2 -> {
                 var data1 = data.getStringArrayExtra("result.code.registrationpart3")?.plus(arr)
+                if(data1 == null){
+                    Toast.makeText(this, "Item in registration is missing: RegPart2", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this, "R2: ${data1.get(0)} ${data1.get(0)} ${data1.get(0)}", Toast.LENGTH_SHORT).show()
+                }
                 val int1 = Intent()
                 int1.putExtra("result.code.registrationpart2",data1)
                 setResult(1, int1)

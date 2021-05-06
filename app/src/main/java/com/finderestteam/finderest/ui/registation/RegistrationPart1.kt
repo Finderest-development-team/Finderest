@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.finderestteam.finderest.MainActivity2
 import com.finderestteam.finderest.PersonData
 import com.finderestteam.finderest.R
@@ -34,22 +35,6 @@ class RegistrationPart1 : AppCompatActivity() {
                     findViewById<EditText>(R.id.editTextTextEmailAddress).text.toString(),
                     findViewById<EditText>(R.id.editTextTextPassword).text.toString()
                 )
-            }
-        }
-    }
-
-    private fun signInNewUser(email: String, password: String) {
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(this
-        ) {
-            if (it.isSuccessful) {
-                val user = FirebaseAuth.getInstance().currentUser
-                Toast.makeText(this, "createUserWithEmail:success", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(
-                    this,
-                    "createUserWithEmail:failure: ${it.exception.toString()}",
-                    Toast.LENGTH_SHORT
-                ).show()
             }
         }
     }
@@ -86,11 +71,11 @@ class RegistrationPart1 : AppCompatActivity() {
         when (resultCode) {
             1 -> {
                 val arr = data.getStringArrayExtra("result.code.registrationpart2")
-                val name = arr?.get(2)
                 val mail1 = arr?.get(0)
                 val password1 = arr?.get(1)
+                val name = arr?.get(2)
+                val photo = arr?.get(3)
                 val interests = arrayOf(
-                    arr?.get(3),
                     arr?.get(4),
                     arr?.get(5),
                     arr?.get(6),
@@ -98,22 +83,13 @@ class RegistrationPart1 : AppCompatActivity() {
                     arr?.get(8),
                     arr?.get(9),
                     arr?.get(10),
-                    arr?.get(11)
+                    arr?.get(11),
+                    arr?.get(12)
                 )
-                if(checkForNulls(interests) || name==null || mail1==null || password1==null){
-                    Toast.makeText(this, "Interests are not fine", Toast.LENGTH_SHORT).show()
-                    Toast.makeText(this, "${arr?.get(3)}, ${arr?.get(4)}, ${arr?.get(5)}, ${arr?.get(6)}, " +
-                            "${arr?.get(7)}, ${arr?.get(8)}, ${arr?.get(9)}, ${arr?.get(10)}, ${arr?.get(11)}", Toast.LENGTH_SHORT).show()
+                if(checkForNulls(interests) || name==null || mail1==null || password1==null || photo == null){
+                    Toast.makeText(this, "Items in input interests are missing", Toast.LENGTH_SHORT).show()
                 }else{
-                    Toast.makeText(this, "Interests are fine", Toast.LENGTH_SHORT).show()
-                    Toast.makeText(this, "${arr?.get(3)}, ${arr?.get(4)}, ${arr?.get(5)}, ${arr?.get(6)}, " +
-                            "${arr?.get(7)}, ${arr?.get(8)}, ${arr?.get(9)}, ${arr?.get(10)}, ${arr?.get(11)}", Toast.LENGTH_SHORT).show()
-                    val person = PersonData(name, mail1, password1, interests)
-                }
-                if(name==null || mail1==null || password1==null){
-                    Toast.makeText(this, "Item in registration is missing in 0.1", Toast.LENGTH_SHORT).show()
-                }else{
-                    signInNewUser(mail1,password1)
+                    val person = PersonData(name, mail1, password1, interests, photo)
                 }
             }
             else -> {

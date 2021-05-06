@@ -32,4 +32,5 @@
     <string name="question">Question</string>
     <string name="enter">enter</string>
     <string name="login_out">Login out</string>
+    <string name="end_registration">End registration</string>
 </resources>

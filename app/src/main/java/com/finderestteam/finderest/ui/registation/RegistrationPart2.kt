@@ -94,7 +94,7 @@ class RegistrationPart2 : AppCompatActivity() {
     }
     @RequiresApi(Build.VERSION_CODES.N)
     fun que8(view:View){
-        findViewById<TextView>(R.id.Question).setText("Do you like going to exhibitions and art in general")
+        findViewById<TextView>(R.id.Question).setText("Do you like going to exhibitions and art in general?")
         findViewById<ProgressBar>(R.id.progressBar2).setProgress(8, true)
         findViewById<Button>(R.id.button8).visibility = View.GONE
         findViewById<Button>(R.id.button9).visibility = View.VISIBLE
@@ -129,7 +129,7 @@ class RegistrationPart2 : AppCompatActivity() {
             2 -> {
                 val data1 = data.getStringArrayExtra("result.code.registrationpart3")?.plus(arr)
                 if(data1 == null){
-                    Toast.makeText(this, "Item in registration is missing in 0.2", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Items in registration are missing in 0.2", Toast.LENGTH_SHORT).show()
                 }
                 val int1 = Intent()
                 int1.putExtra("result.code.registrationpart2",data1)

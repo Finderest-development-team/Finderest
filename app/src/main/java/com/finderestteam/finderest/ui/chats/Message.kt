@@ -1,9 +1,10 @@
 package com.finderestteam.finderest.ui.chats
+import com.google.firebase.auth.FirebaseUser
 import java.util.Date
 class Message(_userName:String, _textMessage:String) {
     private val messageTime:Long = Date().time
-    val userName:String = _userName
-    val textMessage:String = _textMessage
+    private val userName:String = _userName
+    private val textMessage:String = _textMessage
     fun getName(): String {
         return this.userName
     }

@@ -7,7 +7,7 @@ class PersonData(_userName:String, _userMail:String, _userPassword:String, _user
     private val userName = _userName
     private val userMail = _userMail
     private val userPassword = _userPassword
-    private val userPhoto = _userPhoto.toUri()
+    //private val userPhoto = _userPhoto.toUri()
 
     private val  _userListOfInterests = _userListOfInterests
     private val userListOfInterests = getRidOfUninteresting()
@@ -34,7 +34,7 @@ class PersonData(_userName:String, _userMail:String, _userPassword:String, _user
     fun getListOfInterests(): List<String> {
         return userListOfInterests
     }
-    fun getPhoto(): Uri {
+    /*fun getPhoto(): Uri {
         return userPhoto
-    }
+    }*/
 }

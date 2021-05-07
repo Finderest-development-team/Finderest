@@ -77,7 +77,6 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-database'
-    implementation 'com.firebaseui:firebase-ui:0.6.2'
 
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
@@ -93,4 +92,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-places:17.0.0'
     implementation 'com.kelvinapps:rxfirebase:0.0.16'
     implementation 'com.firebaseui:firebase-ui-database:1.2.0'
+
+    implementation 'com.firebaseui:firebase-ui:0.6.2'
 }

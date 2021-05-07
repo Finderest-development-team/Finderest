@@ -18,10 +18,10 @@ class RegistrationPart3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.whole_registration_02)
     }
-    private var mail:String = ""
-    private var password:String = ""
-    private var name:String = ""
-    var photo: String = ""
+    private var mail:String = "mail"
+    private var password:String = "password"
+    private var name:String = "name"
+    var photo: String = "photo_uri"
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun button1(view: View){
@@ -80,7 +80,7 @@ class RegistrationPart3 : AppCompatActivity() {
     }
     @RequiresApi(Build.VERSION_CODES.N)
     fun button4(view: View){
-        if(photo != ""){
+        if(photo != "photo_uri"){
             val bar = findViewById<ProgressBar>(R.id.progressBar5)
             bar.setProgress(4, true)
             signInNewUser(mail,password)
@@ -93,7 +93,7 @@ class RegistrationPart3 : AppCompatActivity() {
     fun button5(view: View){
         val int2 = Intent()
         val arr = arrayOf(mail, password, name, photo)
-        int2.putExtra("result.code.registrationpart3", arr)
+        int2.putExtra("result.code.registration.part3", arr)
         setResult(2, int2)
         finish()
     }

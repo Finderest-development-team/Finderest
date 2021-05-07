@@ -66,34 +66,37 @@ class RegistrationPart1 : AppCompatActivity() {
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (data == null)
-            return
         when (resultCode) {
             1 -> {
-                val arr = data.getStringArrayExtra("result.code.registrationpart2")
-                val mail1 = arr?.get(0)
-                val password1 = arr?.get(1)
-                val name = arr?.get(2)
-                val photo = arr?.get(3)
-                val interests = arrayOf(
-                    arr?.get(4),
-                    arr?.get(5),
-                    arr?.get(6),
-                    arr?.get(7),
-                    arr?.get(8),
-                    arr?.get(9),
-                    arr?.get(10),
-                    arr?.get(11),
-                    arr?.get(12)
-                )
-                if(checkForNulls(interests) || name==null || mail1==null || password1==null || photo == null){
-                    Toast.makeText(this, "Items in input interests are missing", Toast.LENGTH_SHORT).show()
+                if (data != null) {
+                    val arr = data.getStringArrayExtra("result.code.registration.part2")
+                    if(arr?.let { checkForNulls(it) } == false) {
+                        val mail1 = arr.get(0)
+                        val password1 = arr.get(1)
+                        val name = arr.get(2)
+                        val photo = arr.get(3)
+                        val interests = arrayOf(
+                            arr.get(4),
+                            arr.get(5),
+                            arr.get(6),
+                            arr.get(7),
+                            arr.get(8),
+                            arr.get(9),
+                            arr.get(10),
+                            arr.get(11),
+                            arr.get(12)
+                        )
+                        Toast.makeText(this, "${arr[0]}, ${arr[1]}, ${arr[2]}, ${arr[3]}, ${arr[4]}, ${arr[5]}, ${arr[6]}, ${arr[7]}, ${arr[8]}, ${arr[9]}, ${arr[10]}, ${arr[11]}, ${arr[12]}", Toast.LENGTH_LONG).show()
+                        val person = PersonData(name, mail1, password1, interests, photo)
+                    }else{
+                        Toast.makeText(this, "arr is null", Toast.LENGTH_SHORT).show()
+                    }
                 }else{
-                    val person = PersonData(name, mail1, password1, interests, photo)
+                    Toast.makeText(this, "data is null", Toast.LENGTH_SHORT).show()
                 }
             }
             else -> {
-                Log.d("TAG", "Smth went wrong")
+                Log.d("MYTAG", "Smth went wrong")
             }
         }
     }

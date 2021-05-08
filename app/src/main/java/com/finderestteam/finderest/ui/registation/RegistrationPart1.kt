@@ -9,11 +9,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import com.finderestteam.finderest.MainActivity2
 import com.finderestteam.finderest.PersonData
 import com.finderestteam.finderest.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+
 
 class RegistrationPart1 : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
@@ -28,7 +30,9 @@ class RegistrationPart1 : AppCompatActivity() {
         }
         val butt2 = findViewById<Button>(R.id.enterButton)
         butt2.setOnClickListener {
-            if(findViewById<EditText>(R.id.editTextTextEmailAddress).text.toString() == "" && findViewById<EditText>(R.id.editTextTextPassword).text.toString() == "") {
+            if(findViewById<EditText>(R.id.editTextTextEmailAddress).text.toString() == "" && findViewById<EditText>(
+                    R.id.editTextTextPassword
+                ).text.toString() == "") {
                 Toast.makeText(this, "You have an empty fields", Toast.LENGTH_SHORT).show()
             }else{
                 signInExistingUser(
@@ -40,7 +44,8 @@ class RegistrationPart1 : AppCompatActivity() {
     }
 
     private fun signInExistingUser(email: String, password: String){
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(this
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(
+            this
         ) {
             if (it.isSuccessful) {
                 val user = FirebaseAuth.getInstance().currentUser
@@ -70,7 +75,7 @@ class RegistrationPart1 : AppCompatActivity() {
             1 -> {
                 if (data != null) {
                     val arr = data.getStringArrayExtra("result.code.registration.part2")
-                    if(arr?.let { checkForNulls(it) } == false) {
+                    if (arr?.let { checkForNulls(it) } == false) {
                         val mail1 = arr.get(0)
                         val password1 = arr.get(1)
                         val name = arr.get(2)
@@ -84,14 +89,17 @@ class RegistrationPart1 : AppCompatActivity() {
                             arr.get(9),
                             arr.get(10),
                             arr.get(11),
-                            arr.get(12)
+                            arr.get(12),
+                            arr.get(13)
                         )
-                        Toast.makeText(this, "${arr[0]}, ${arr[1]}, ${arr[2]}, ${arr[3]}, ${arr[4]}, ${arr[5]}, ${arr[6]}, ${arr[7]}, ${arr[8]}, ${arr[9]}, ${arr[10]}, ${arr[11]}, ${arr[12]}", Toast.LENGTH_LONG).show()
-                        val person = PersonData(name, mail1, password1, interests, photo)
-                    }else{
+                        FirebaseDatabase.getInstance().reference.child("items").push()
+                            .setValue(
+                                PersonData(name, mail1, password1, interests, photo)
+                            )
+                    } else {
                         Toast.makeText(this, "arr is null", Toast.LENGTH_SHORT).show()
                     }
-                }else{
+                } else {
                     Toast.makeText(this, "data is null", Toast.LENGTH_SHORT).show()
                 }
             }

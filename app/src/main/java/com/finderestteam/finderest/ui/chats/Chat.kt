@@ -16,12 +16,7 @@ class Chat : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val root = inflater.inflate(R.layout.fragment_chat_with_person, container, false)
-        root.button13.setOnClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.navigation_chat)
-        }
-
         return root
     }
 }

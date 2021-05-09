@@ -8,21 +8,20 @@
 
     <ImageView
         android:id="@+id/BannerPhoto"
-        android:layout_width="237dp"
-        android:layout_height="495dp"
+        android:layout_width="238dp"
+        android:layout_height="410dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
+        android:background="@drawable/back"
+        android:contentDescription=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/back"
-        tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="" />
+        tools:srcCompat="@tools:sample/avatars" />
 
     <ListView
         android:id="@+id/BannerListOfInterests"
         android:layout_width="170dp"
         android:layout_height="308dp"
-        android:layout_marginBottom="60dp"
         android:background="@drawable/back"
         app:layout_constraintBottom_toBottomOf="@+id/BannerPhoto"
         app:layout_constraintEnd_toStartOf="@+id/BannerPhoto"
@@ -31,10 +30,10 @@
 
     <TextView
         android:id="@+id/BannerText"
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/interests"
-        android:background="@drawable/back"
         app:layout_constraintBottom_toTopOf="@+id/BannerListOfInterests"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -43,6 +42,7 @@
         android:layout_width="411dp"
         android:layout_height="19dp"
         android:text="@string/about_me"
+        android:gravity="center"
         android:background="@drawable/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,10 +51,10 @@
     <TextView
         android:id="@+id/BannerAboutMe"
         android:layout_width="411dp"
-        android:layout_height="212dp"
+        android:layout_height="104dp"
         android:background="@drawable/back"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BannerText2" />
 
@@ -86,4 +86,5 @@
         app:layout_constraintTop_toBottomOf="@+id/BannerPersonName"
         android:autofillHints=""
         tools:ignore="LabelFor" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

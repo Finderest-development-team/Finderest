@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/BannerPhoto"
+        android:layout_width="237dp"
+        android:layout_height="495dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/back"
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="" />
+
+    <ListView
+        android:id="@+id/BannerListOfInterests"
+        android:layout_width="170dp"
+        android:layout_height="308dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/back"
+        app:layout_constraintBottom_toBottomOf="@+id/BannerPhoto"
+        app:layout_constraintEnd_toStartOf="@+id/BannerPhoto"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/BannerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/interests"
+        android:background="@drawable/back"
+        app:layout_constraintBottom_toTopOf="@+id/BannerListOfInterests"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/BannerText2"
+        android:layout_width="411dp"
+        android:layout_height="19dp"
+        android:text="@string/about_me"
+        android:background="@drawable/back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BannerPhoto" />
+
+    <TextView
+        android:id="@+id/BannerAboutMe"
+        android:layout_width="411dp"
+        android:layout_height="212dp"
+        android:background="@drawable/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BannerText2" />
+
+    <EditText
+        android:id="@+id/BannerPersonName"
+        android:layout_width="170dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="4dp"
+        android:autofillHints=""
+        android:background="@drawable/back"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/BannerPhoto"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/BannerPersonMail"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:background="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BannerPersonName"
+        android:autofillHints=""
+        tools:ignore="LabelFor" />
+</androidx.constraintlayout.widget.ConstraintLayout>

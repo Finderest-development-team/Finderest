@@ -33,4 +33,7 @@
     <string name="enter">enter</string>
     <string name="login_out">Login out</string>
     <string name="end_registration">End registration</string>
+    <string name="enter_message">Enter message</string>
+    <string name="interests">Interests:</string>
+    <string name="about_me">About me:</string>
 </resources>

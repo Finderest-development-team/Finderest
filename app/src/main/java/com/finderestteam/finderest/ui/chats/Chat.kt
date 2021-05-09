@@ -36,7 +36,7 @@ class Chat : Fragment() {
                 .child("Messages")
         ){
             override fun populateView(v: View?, model: Message?, position: Int) {
-                if (v != null && model != null && position != null) {
+                if (v != null && model != null) {
                     v.findViewById<TextView>(R.id.user_message).text = model.getMessage()
                     v.findViewById<TextView>(R.id.time).text =
                         DateFormat.format("dd-mm-yyyy HH:mm:ss", model.getTime())

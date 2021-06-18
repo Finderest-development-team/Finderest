@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -21,8 +22,12 @@ class RegistrationPart1 : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        /*try {
+            this.supportActionBar!!.hide()
+        } catch (e: NullPointerException) {
+        }*/
         setContentView(R.layout.login)
-        val butt = findViewById<Button>(R.id.registrationButton)
+        val butt = findViewById<TextView>(R.id.registrationButton)
         butt.setOnClickListener {
             val int = Intent(this, RegistrationPart2::class.java)
             startActivityForResult(int, 1)

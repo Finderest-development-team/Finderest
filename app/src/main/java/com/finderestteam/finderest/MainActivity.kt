@@ -2,11 +2,10 @@ package com.finderestteam.finderest
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.finderestteam.finderest.ui.registation.RegistrationPart1
 import com.google.firebase.auth.FirebaseAuth
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/navigation_profile_editor"
         android:name="com.finderestteam.finderest.ui.profile.ProfileEditor"
-        android:label="О себе"
+        android:label="@string/about_me"
         tools:layout="@layout/fragment_profile_editor" />
     <fragment
         android:id="@+id/navigation_chat"

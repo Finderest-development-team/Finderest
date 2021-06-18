@@ -1,7 +1,7 @@
 package com.finderestteam.finderest.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.finderestteam.finderest.R
 
 class LoginActivity : AppCompatActivity() {

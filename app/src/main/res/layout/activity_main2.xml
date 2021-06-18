@@ -16,5 +16,5 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic"
         android:src="@drawable/background"
-        android:contentDescription="@string/appbackground" />
+        android:contentDescription="@string/appBackground" />
 </androidx.constraintlayout.widget.ConstraintLayout>

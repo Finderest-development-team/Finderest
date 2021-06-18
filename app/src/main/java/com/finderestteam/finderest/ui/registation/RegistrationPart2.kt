@@ -12,116 +12,64 @@ import androidx.annotation.RequiresApi
 import com.finderestteam.finderest.R
 
 class RegistrationPart2 : AppCompatActivity() {
-    private var arr = arrayOf("false", "false", "false", "false", "false", "false", "false", "false", "false", "false")
+    private var answers = arrayOf("false", "false", "false", "false", "false", "false", "false", "false", "false", "false")
+    private var questions = arrayOf(
+        "Are you interested in sports?",
+        "Would u like to talk about technologies?",
+        "Would like to learn something new about animals?",
+        "Are you a gamer?",
+        "Do u want to get some new knowledge?",
+        "Do you like parties?",
+        "Do you enjoy traveling?",
+        "Do you like going to exhibitions and art in general?",
+        "Do you want to find friends for walks?",
+        "Do u like reading",
+        "Lets move on"
+    )
+
+    private var questionNumber = 0
+
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.input_interests)
-        findViewById<TextView>(R.id.Question).setText("Are u interested in sport?")
+        findViewById<TextView>(R.id.Question).setText(questions[questionNumber])
         findViewById<Switch>(R.id.answer).setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 Log.d("TAG", "Switch was activated")
-                when{
-                    findViewById<Button>(R.id.button).visibility == View.VISIBLE ->{arr[0]="true"}
-                    findViewById<Button>(R.id.button2).visibility == View.VISIBLE ->{arr[1]="true"}
-                    findViewById<Button>(R.id.button3).visibility == View.VISIBLE ->{arr[2]="true"}
-                    findViewById<Button>(R.id.button4).visibility == View.VISIBLE ->{arr[3]="true"}
-                    findViewById<Button>(R.id.button5).visibility == View.VISIBLE ->{arr[4]="true"}
-                    findViewById<Button>(R.id.button6).visibility == View.VISIBLE ->{arr[5]="true"}
-                    findViewById<Button>(R.id.button7).visibility == View.VISIBLE ->{arr[6]="true"}
-                    findViewById<Button>(R.id.button8).visibility == View.VISIBLE ->{arr[7]="true"}
-                    findViewById<Button>(R.id.button9).visibility == View.VISIBLE ->{arr[8]="true"}
-                    findViewById<Button>(R.id.button10).visibility == View.VISIBLE ->{arr[9]="true"}
-                }
+                answers[questionNumber] = "true"
             }
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.N)
-    fun que1(view: View){
-        findViewById<TextView>(R.id.Question).setText("Would u like to talk about technologies?")
-        findViewById<ProgressBar>(R.id.progressBar2).setProgress(1, true)
-        findViewById<Button>(R.id.button).visibility = View.GONE
-        findViewById<Button>(R.id.button2).visibility = View.VISIBLE
-        findViewById<Switch>(R.id.answer).isChecked = false
+    fun askQuestion(view: View){
+        if (questionNumber <= 10)
+        {
+            questionNumber += 1
+        }
+
+        if (questionNumber == 11)
+        {
+
+            val int2 = Intent(this, RegistrationPart3::class.java)
+            startActivityForResult(int2, 2)
+            overridePendingTransition(R.anim.transition_in, R.anim.transition_out)
+        }
+        else
+        {
+            findViewById<TextView>(R.id.Question).setText(questions[questionNumber])
+            findViewById<ProgressBar>(R.id.progressBar2).setProgress(questionNumber, true)
+            findViewById<Switch>(R.id.answer).isChecked = false
+
+            if (questionNumber == 10)
+            {
+                findViewById<Switch>(R.id.answer).visibility = View.INVISIBLE
+            }
+        }
     }
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun que2(view: View){
-        findViewById<TextView>(R.id.Question).setText("Would like to learn something new about animals?")
-        findViewById<ProgressBar>(R.id.progressBar2).setProgress(2, true)
-        findViewById<Button>(R.id.button2).visibility = View.GONE
-        findViewById<Button>(R.id.button3).visibility = View.VISIBLE
-        findViewById<Switch>(R.id.answer).isChecked = false
-    }
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun que3(view: View){
-        findViewById<TextView>(R.id.Question).setText("Are you a gamer?")
-        findViewById<ProgressBar>(R.id.progressBar2).setProgress(3, true)
-        findViewById<Button>(R.id.button3).visibility = View.GONE
-        findViewById<Button>(R.id.button4).visibility = View.VISIBLE
-        findViewById<Switch>(R.id.answer).isChecked = false
-    }
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun que4(view: View){
-        findViewById<TextView>(R.id.Question).setText("Do u want to get some new knowledge?")
-        findViewById<ProgressBar>(R.id.progressBar2).setProgress(4, true)
-        findViewById<Button>(R.id.button4).visibility = View.GONE
-        findViewById<Button>(R.id.button5).visibility = View.VISIBLE
-        findViewById<Switch>(R.id.answer).isChecked = false
-    }
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun que5(view: View){
-        findViewById<TextView>(R.id.Question).setText("Do you like parties?")
-        findViewById<ProgressBar>(R.id.progressBar2).setProgress(5, true)
-        findViewById<Button>(R.id.button5).visibility = View.GONE
-        findViewById<Button>(R.id.button6).visibility = View.VISIBLE
-        findViewById<Switch>(R.id.answer).isChecked = false
-    }
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun que6(view: View){
-        findViewById<TextView>(R.id.Question).setText("Do you enjoy traveling?")
-        findViewById<ProgressBar>(R.id.progressBar2).setProgress(6, true)
-        findViewById<Button>(R.id.button6).visibility = View.GONE
-        findViewById<Button>(R.id.button7).visibility = View.VISIBLE
-        findViewById<Switch>(R.id.answer).isChecked = false
-    }
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun que7(view: View){
-        findViewById<TextView>(R.id.Question).setText("Do you like going to exhibitions and art in general?")
-        findViewById<ProgressBar>(R.id.progressBar2).setProgress(7, true)
-        findViewById<Button>(R.id.button7).visibility = View.GONE
-        findViewById<Button>(R.id.button8).visibility = View.VISIBLE
-        findViewById<Switch>(R.id.answer).isChecked = false
-    }
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun que8(view: View){
-        findViewById<TextView>(R.id.Question).setText("Do you want to find friends for walks?")
-        findViewById<ProgressBar>(R.id.progressBar2).setProgress(8, true)
-        findViewById<Button>(R.id.button8).visibility = View.GONE
-        findViewById<Button>(R.id.button9).visibility = View.VISIBLE
-        findViewById<Switch>(R.id.answer).isChecked = false
-    }
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun que9(view: View){
-        findViewById<TextView>(R.id.Question).setText("Do u like reading")
-        findViewById<ProgressBar>(R.id.progressBar2).setProgress(9, true)
-        findViewById<Button>(R.id.button9).visibility = View.GONE
-        findViewById<Button>(R.id.button10).visibility = View.VISIBLE
-        findViewById<Switch>(R.id.answer).isChecked = false
-    }
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun que10(view: View){
-        findViewById<TextView>(R.id.Question).setText("Lets move on")
-        findViewById<ProgressBar>(R.id.progressBar2).setProgress(10, true)
-        findViewById<Button>(R.id.button10).visibility = View.GONE
-        findViewById<Button>(R.id.MoveOnBtn).visibility = View.VISIBLE
-        findViewById<Switch>(R.id.answer).visibility = View.INVISIBLE
-    }
-    fun goNext(view: View){
-        val int2 = Intent(this, RegistrationPart3::class.java)
-        startActivityForResult(int2, 2)
-        overridePendingTransition(R.anim.transition_in, R.anim.transition_out)
-    }
+
     private fun checkForNulls(array: Array<String?>): Boolean {
         for(i in array){
             if(i == null)
@@ -135,7 +83,7 @@ class RegistrationPart2 : AppCompatActivity() {
             2 -> {
                 if(data != null) {
                     val data1 =
-                        data.getStringArrayExtra("result.code.registration.part3")?.plus(arr)
+                        data.getStringArrayExtra("result.code.registration.part3")?.plus(answers)
                     if (data1?.let { checkForNulls(it) } == false) {
                         val int1 = Intent()
                         int1.putExtra("result.code.registration.part2", data1)
@@ -145,7 +93,7 @@ class RegistrationPart2 : AppCompatActivity() {
                         val int1 = Intent()
                         int1.putExtra(
                             "result.code.registration.part2",
-                            arrayOf("mail", "password", "name", "photo_uri").plus(arr)
+                            arrayOf("mail", "password", "name", "photo_uri").plus(answers)
                         )
                         setResult(1, int1)
                         finish()
@@ -154,7 +102,7 @@ class RegistrationPart2 : AppCompatActivity() {
                     val int1 = Intent()
                     int1.putExtra(
                         "result.code.registration.part2",
-                        arrayOf("mail", "password", "name", "photo_uri").plus(arr)
+                        arrayOf("mail", "password", "name", "photo_uri").plus(answers)
                     )
                     setResult(1, int1)
                     finish()

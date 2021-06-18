@@ -22,8 +22,7 @@ class ChatsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProviders.of(this).get(ChatsViewModel::class.java)
+        homeViewModel = ViewModelProviders.of(this).get(ChatsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_chats, container, false)
         root.button13.setOnClickListener {
             NavHostFragment.findNavController(this).navigate(R.id.navigation_chat)

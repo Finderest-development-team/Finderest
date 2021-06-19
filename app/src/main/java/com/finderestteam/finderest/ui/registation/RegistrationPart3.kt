@@ -20,47 +20,42 @@ class RegistrationPart3 : AppCompatActivity() {
         setContentView(R.layout.whole_registration_02)
     }
 
-    private var mail: String = "mail"
-    private var password: String = "password"
-    private var name: String = "name"
+    private var mail:String = "mail"
+    private var password:String = "password"
+    private var name:String = "name"
     var photo: String = "photo_uri"
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun register(view: View) {
+    fun register(view: View){
 
         mail = findViewById<EditText>(R.id.editTextTextEmailAddress2).text.toString()
-
-        if (mail == "") {
+        if(mail == "") {
             Toast.makeText(this, "You have an empty fields", Toast.LENGTH_SHORT).show()
             return
         }
 
-
-
-        if (findViewById<EditText>(R.id.editTextTextEmailPassword2).text.toString() ==
-            findViewById<EditText>(R.id.editTextNumberPassword3).text.toString()
-        ) {
+        if(findViewById<EditText>(R.id.editTextTextEmailPassword2).text.toString() ==
+            findViewById<EditText>(R.id.editTextNumberPassword3).text.toString())
+        {
             password = findViewById<EditText>(R.id.editTextTextEmailPassword2).text.toString()
-
-            if (password == "") {
+            if(password == "") {
                 Toast.makeText(this, "You have an empty fields", Toast.LENGTH_SHORT).show()
                 return
             }
-        } else {
+        }else{
             Toast.makeText(this, "You didn't confirm your password", Toast.LENGTH_SHORT).show()
             return
         }
 
-
-        if (photo != "photo_uri") {
-            signInNewUser(mail, password)
-        } else {
+        if(photo != "photo_uri"){
+            signInNewUser(mail,password)
+        }else{
             Toast.makeText(this, "Pls put your photo", Toast.LENGTH_SHORT).show()
             return
         }
 
         name = findViewById<EditText>(R.id.editTextTextPersonName2).text.toString()
-        if (name == "") {
+        if(name == "") {
             Toast.makeText(this, "You have an empty field", Toast.LENGTH_SHORT).show()
             return
         }
@@ -72,7 +67,7 @@ class RegistrationPart3 : AppCompatActivity() {
         finish()
     }
 
-    fun loadPhoto(view: View) {
+    fun loadPhoto(view: View){
         val loadIntent =
             Intent(Intent.ACTION_GET_CONTENT)
         loadIntent.type = "*/*"
@@ -80,19 +75,18 @@ class RegistrationPart3 : AppCompatActivity() {
     }
 
     private fun signInNewUser(email: String, password: String) {
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) {
-                if (it.isSuccessful) {
-                    val user = FirebaseAuth.getInstance().currentUser
-                    Toast.makeText(this, "createUserWithEmail:success", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(
-                        this,
-                        "createUserWithEmail:failure: ${it.exception.toString()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) {
+            if (it.isSuccessful) {
+                val user = FirebaseAuth.getInstance().currentUser
+                Toast.makeText(this, "createUserWithEmail:success", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    this,
+                    "createUserWithEmail:failure: ${it.exception.toString()}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
+        }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

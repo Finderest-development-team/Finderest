@@ -9,13 +9,15 @@
 
     <ImageView
         android:id="@+id/AppIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="68dp"
         android:contentDescription="@string/appImage"
         android:scaleType="center"
-        android:src="@drawable/app_logo"
+        android:src="@drawable/app_logo2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />

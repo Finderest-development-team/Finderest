@@ -97,7 +97,7 @@ class RegistrationPart1 : AppCompatActivity() {
                             arr.get(12),
                             arr.get(13)
                         )
-                        FirebaseDatabase.getInstance().reference.child("items").push()
+                        FirebaseDatabase.getInstance().reference.child("items").child(FirebaseAuth.getInstance().currentUser.uid).push()
                             .setValue(
                                 PersonData(name, mail1, password1, interests, photo)
                             )
@@ -107,6 +107,8 @@ class RegistrationPart1 : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "data is null", Toast.LENGTH_SHORT).show()
                 }
+            }
+            2 -> {
             }
             else -> {
                 Log.d("MYTAG", "Smth went wrong")

@@ -98,7 +98,7 @@ class RegistrationPart1 : AppCompatActivity() {
                             arr.get(13)
                         )
                         FirebaseDatabase.getInstance().reference.child("items")
-                            .child(FirebaseAuth.getInstance().currentUser.uid).push()
+                            .push()
                             .setValue(
                                 PersonData(name, mail1, password1, interests, photo)
                             )

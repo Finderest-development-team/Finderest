@@ -47,18 +47,20 @@ android:layout_height="match_parent">
     app:layout_constraintTop_toTopOf="parent"
     tools:ignore="LabelFor" />
 
-<TextView
-    android:id="@+id/bannerText2"
-    android:layout_width="170dp"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/BannerListOfInterests1"
-    android:layout_alignParentStart="true"
-    android:layout_marginStart="0dp"
-    android:layout_marginBottom="3dp"
-    android:gravity="center"
-    android:text="@string/interests"
-    app:layout_constraintBottom_toTopOf="@+id/BannerListOfInterests1"
-    app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/bannerText2"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/BannerListOfInterests1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toStartOf="@+id/bannerPhoto"
+        android:gravity="center"
+        android:text="@string/interests"
+        app:layout_constraintBottom_toTopOf="@+id/BannerListOfInterests1"
+        app:layout_constraintStart_toStartOf="parent" />
 
 <ListView
     android:id="@+id/BannerListOfInterests1"

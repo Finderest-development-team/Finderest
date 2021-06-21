@@ -10,14 +10,16 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.finderestteam.finderest.PersonData
 import com.finderestteam.finderest.R
 import com.google.firebase.database.*
+import java.util.*
 
 
 class FindFragment : Fragment() {
 
     private lateinit var notificationsViewModel: FindViewModel
-
+    private lateinit var listData: LinkedList<PersonData>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,19 +34,14 @@ class FindFragment : Fragment() {
             .child("items").addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    root.findViewById<TextView>(R.id.bannerPersonName).text =
-                        dataSnapshot.child("name:").value.toString()
-                    root.findViewById<TextView>(R.id.bannerPersonMail).text =
-                        dataSnapshot.child("mail:").value.toString()
-                    /*var arr = dataSnapshot.child("listOfInterests:").value.toString().split(" ")
-                        .toTypedArray()
-                    val adapter = activity?.let {
-                        ArrayAdapter<String>(
-                            it,
-                            R.layout.person_banner, arr
-                        )
+                    if(listData.size > 0)
+                        listData.clear()
+                    for (dt in dataSnapshot.children){
+                        val person = dt.getValue(PersonData::class.java)
+                        if (person != null) {
+                            listData.add(person)
+                        }
                     }
-                    list.adapter = adapter*/
                     }
                     override fun onCancelled(databaseError: DatabaseError) {}
                 })

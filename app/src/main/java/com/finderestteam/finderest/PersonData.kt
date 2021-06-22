@@ -21,6 +21,16 @@ class PersonData{
     private fun getRidOfUninteresting(_userListOfInterests: Array<String>): String {
         val arr = mutableListOf( "Sport", "Technologies", "Animals", "Gamer", "Education", "Parties", "Travelling", "Art", "Walking", "Books")
         var str = ""
+
+        if(_userListOfInterests[0] in arr)
+        {
+            println("in")
+            for ((i, v) in _userListOfInterests.withIndex()){
+                str += "${_userListOfInterests[i]} "
+            }
+            return str
+        }
+
         for ((i, v) in _userListOfInterests.withIndex()){
             if(v.toBoolean())
                 str += "${arr[i]} "

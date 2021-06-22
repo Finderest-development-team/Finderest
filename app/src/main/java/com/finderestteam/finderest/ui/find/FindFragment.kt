@@ -2,6 +2,7 @@ package com.finderestteam.finderest.ui.find
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,13 +37,20 @@ class FindFragment : Fragment() {
                     if(listData.size > 0)
                         listData.clear()
                     for (dt in dataSnapshot.children){
-                        val person = dt.getValue(PersonData::class.java)
+                        /*val person = dt.getValue(PersonData::class.java)
                         if (person != null) {
                             listData.add(person)
-                        }
+                        }*/
+                        val name = dt.child("userName:").value.toString()
+                        val mail = dt.child("userMail:").value.toString()
+                        val pass = dt.child("userPassword:").value.toString()
+                        val listOfInterests = dt.child("userListOfInterests:").value.toString().split(" ").toTypedArray()
+                        val pd = PersonData(name, mail, pass, listOfInterests)
+                        Log.e("MYTAG", "$name $mail $pass ${listOfInterests.toString()}")
+                        listData.add(pd)
                     }
                     }
-                    override fun onCancelled(databaseError: DatabaseError) {}
+                    override fun onCancelled(databaseError: DatabaseError) { }
                 })
 
         drawBanner(listData, it1)
@@ -77,7 +85,6 @@ class FindFragment : Fragment() {
         if (listView != null) {
             listView.adapter = adapter
         }
-      /*activity?.findViewById<ImageView>(R.id.bannerPhoto)?.setImageURI(listDt[it].getPhoto())*/
     }
 }
 

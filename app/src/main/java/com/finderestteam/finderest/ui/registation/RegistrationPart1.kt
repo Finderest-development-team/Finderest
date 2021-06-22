@@ -97,10 +97,10 @@ class RegistrationPart1 : AppCompatActivity() {
                             arr.get(12),
                             arr.get(13)
                         )
-                        FirebaseDatabase.getInstance().reference.child("items")
+                        FirebaseDatabase.getInstance().getReference("users")
                             .push()
                             .setValue(
-                                PersonData(name, mail1, password1, interests, photo)
+                                PersonData(name, mail1, password1, interests/*, photo*/)
                             )
                     } else {
                         Toast.makeText(this, "arr is null", Toast.LENGTH_SHORT).show()

@@ -1,14 +1,25 @@
 package com.finderestteam.finderest
 
-class PersonData(_userName:String, _userMail:String, _userPassword:String, _userListOfInterests: Array<String>, _userPhoto: String) {
-    private val userName = _userName
-    private val userMail = _userMail
-    private val userPassword = _userPassword
-    /*private val userPhoto = _userPhoto*/
-    private val userListOfInterests = getRidOfUninteresting(_userListOfInterests)
+class PersonData{
+    lateinit var userName: String
+    lateinit var userMail: String
+    lateinit var userPassword: String
+    /*lateinit val userPhoto = _userPhoto*/
+    lateinit var userListOfInterests: String
+
+    constructor(){
+
+    }
+
+    constructor(_userName:String, _userMail:String, _userPassword:String, _userListOfInterests: Array<String>){
+        this.userName = _userName
+        this.userMail = _userMail
+        this.userPassword =  _userPassword
+        this.userListOfInterests = getRidOfUninteresting(_userListOfInterests)
+    }
 
     private fun getRidOfUninteresting(_userListOfInterests: Array<String>): String {
-        val arr = mutableListOf<String> ( "Sport", "Technologies", "Animals", "Gamer", "Education", "Parties", "Travelling", "Art", "Walking", "Books")
+        val arr = mutableListOf( "Sport", "Technologies", "Animals", "Gamer", "Education", "Parties", "Travelling", "Art", "Walking", "Books")
         var str = ""
         for ((i, v) in _userListOfInterests.withIndex()){
             if(v.toBoolean())
@@ -28,7 +39,7 @@ class PersonData(_userName:String, _userMail:String, _userPassword:String, _user
     fun getListOfInterests(): String {
         return userListOfInterests
     }
-    /*fun getPhoto(): String {
-        return userPhoto
-    }*/
+/*fun getPhoto(): String {
+return userPhoto
+}*/
 }

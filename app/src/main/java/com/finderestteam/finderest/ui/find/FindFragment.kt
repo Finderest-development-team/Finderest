@@ -1,13 +1,11 @@
 package com.finderestteam.finderest.ui.find
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.finderestteam.finderest.PersonData
@@ -20,6 +18,8 @@ class FindFragment : Fragment() {
 
     private lateinit var notificationsViewModel: FindViewModel
     private lateinit var listData: LinkedList<PersonData>
+    private var it1 = 0
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,9 +29,8 @@ class FindFragment : Fragment() {
                 ViewModelProviders.of(this).get(FindViewModel::class.java)
         val root = inflater.inflate(R.layout.person_banner, container, false)
 
-        val list: ListView = root.findViewById(R.id.BannerListOfInterests1)
-        FirebaseDatabase.getInstance().getReference("finderest-b1bdf-default-rtdb")
-            .child("items").addListenerForSingleValueEvent(object :
+        FirebaseDatabase.getInstance().getReference("users")
+            .addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if(listData.size > 0)
@@ -45,10 +44,40 @@ class FindFragment : Fragment() {
                     }
                     override fun onCancelled(databaseError: DatabaseError) {}
                 })
-        root.findViewById<Button>(R.id.LikeButton).setOnClickListener {  }
+
+        drawBanner(listData, it1)
+
+        root.findViewById<Button>(R.id.LikeButton).setOnClickListener {
+            drawBanner(listData, it1++)
+        }
 
         root.findViewById<Button>(R.id.SkipButton).setOnClickListener { }
 
         return root
     }
+
+    @SuppressLint("CutPasteId")
+    private fun drawBanner(listDt: LinkedList<PersonData>, it: Int){
+
+        val listView = requireActivity().findViewById<ListView>(R.id.BannerListOfInterests1)
+
+        if (listDt.size == 0 || listDt.size == it + 1) {
+            return
+        }
+
+        activity?.findViewById<TextView>(R.id.bannerPersonName)?.text = listDt[it].getName()
+        activity?.findViewById<TextView>(R.id.bannerPersonMail)?.text = listDt[it].getMail()
+
+        val adapter = ArrayAdapter<String>(
+            requireActivity(),
+            android.R.layout.simple_list_item_1,
+            listDt[it].getListOfInterests().split(" ").toTypedArray()
+        )
+
+        if (listView != null) {
+            listView.adapter = adapter
+        }
+      /*activity?.findViewById<ImageView>(R.id.bannerPhoto)?.setImageURI(listDt[it].getPhoto())*/
+    }
 }
+

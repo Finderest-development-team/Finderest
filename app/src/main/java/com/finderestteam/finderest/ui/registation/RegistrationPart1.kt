@@ -70,6 +70,25 @@ class RegistrationPart1 : AppCompatActivity() {
         }
         return false
     }
+    private fun getRidOfUninteresting(_userListOfInterests: Array<String>): String {
+        val arr = mutableListOf( "Sport", "Technologies", "Animals", "Gamer", "Education", "Parties", "Travelling", "Art", "Walking", "Books")
+        var str = ""
+
+        if(_userListOfInterests[0] in arr)
+        {
+            println("in")
+            for ((i, v) in _userListOfInterests.withIndex()){
+                str += "${_userListOfInterests[i]} "
+            }
+            return str
+        }
+
+        for ((i, v) in _userListOfInterests.withIndex()){
+            if(v.toBoolean())
+                str += "${arr[i]} "
+        }
+        return str
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (resultCode) {
@@ -80,7 +99,7 @@ class RegistrationPart1 : AppCompatActivity() {
                         FirebaseDatabase.getInstance().getReference("users")
                             .push()
                             .setValue(
-                                PersonData(arr[2], arr[0], arr[1], arrayOf(
+                                PersonData(arr[2], arr[0], arr[1], getRidOfUninteresting(arrayOf(
                                     arr[3],
                                     arr[4],
                                     arr[5],
@@ -91,7 +110,7 @@ class RegistrationPart1 : AppCompatActivity() {
                                     arr[10],
                                     arr[11],
                                     arr[12]
-                                ))
+                                )))
                             )
                     } else {
                         Toast.makeText(this, "data is null", Toast.LENGTH_SHORT).show()

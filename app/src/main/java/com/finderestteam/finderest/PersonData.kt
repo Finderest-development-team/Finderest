@@ -4,7 +4,6 @@ class PersonData{
     lateinit var userName: String
     lateinit var userMail: String
     lateinit var userPassword: String
-    /*lateinit val userPhoto = _userPhoto*/
     lateinit var userListOfInterests: String
 
     constructor(){
@@ -49,7 +48,4 @@ class PersonData{
     fun getListOfInterests(): String {
         return userListOfInterests
     }
-/*fun getPhoto(): String {
-return userPhoto
-}*/
 }

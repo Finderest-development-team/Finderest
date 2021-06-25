@@ -37,47 +37,68 @@ class RegistrationPart3 : AppCompatActivity() {
     }
     private var filePath: Uri? = null
     private val PICK_IMAGE_REQUEST = 71
-
+    private var photoWasUploaded = true
     private var mail:String = "mail"
     private var password:String = "password"
     private var name:String = "name"
-    var photo: String = "photo_uri"
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun register(view: View){
+        if(checkMail() && checkPass() && checkName() && checkPhoto()){
+            signInNewUser(mail, password)
+        }
+    }
 
+    private fun checkMail(): Boolean {
         mail = findViewById<EditText>(R.id.editTextTextEmailAddress2).text.toString()
         if(mail == "") {
             Toast.makeText(this, "You have an empty fields", Toast.LENGTH_SHORT).show()
-            return
+            return false
         }
+        return true
+    }
 
+    private fun checkPass(): Boolean {
         if(findViewById<EditText>(R.id.editTextTextEmailPassword2).text.toString() ==
             findViewById<EditText>(R.id.editTextNumberPassword3).text.toString())
         {
             password = findViewById<EditText>(R.id.editTextTextEmailPassword2).text.toString()
             if(password == "") {
                 Toast.makeText(this, "You have an empty fields", Toast.LENGTH_SHORT).show()
-                return
+                return false
             }
         }else{
             Toast.makeText(this, "You didn't confirm your password", Toast.LENGTH_SHORT).show()
-            return
+            return false
         }
+        return true
+    }
 
-        /*if(photo != "photo_uri"){
-            signInNewUser(mail,password)
+    private fun checkName(): Boolean {
+        name = findViewById<EditText>(R.id.editTextTextPersonName2).text.toString()
+        if(name == "") {
+            Toast.makeText(this, "You have an empty field", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
+    }
+
+    private fun checkPhoto(): Boolean{
+        return if (filePath != null) {
+            true
         }else{
-            Toast.makeText(this, "Pls put your photo", Toast.LENGTH_SHORT).show()
-            return
-        }*/
-        if (filePath != null) {
-            /*val progressDialog = ProgressDialog(this)
-            progressDialog.setTitle("Uploading...")
-            progressDialog.show()*/
-            FirebaseStorage.getInstance().getReference("images").child("images/$mail")
+            Toast.makeText(this, "Put your image", Toast.LENGTH_SHORT).show()
+            false
+        }
+    }
+
+    private fun uploadPhoto(){
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Uploading...")
+        progressDialog.show()
+        FirebaseStorage.getInstance().getReference("images").child("$mail")
             .putFile(filePath!!)
-            /*.addOnSuccessListener {
+            .addOnSuccessListener {
                 progressDialog.dismiss()
                 Toast.makeText(this, "Uploaded", Toast.LENGTH_SHORT).show()
             }
@@ -85,68 +106,56 @@ class RegistrationPart3 : AppCompatActivity() {
                 progressDialog.dismiss()
                 Toast.makeText(this, "Failed " + e.message, Toast.LENGTH_SHORT)
                     .show()
+                photoWasUploaded = false
+
             }
             .addOnProgressListener { taskSnapshot ->
                 val progress =
                     100.0 * taskSnapshot.bytesTransferred / taskSnapshot
                         .totalByteCount
                 progressDialog.setMessage("Uploaded " + progress.toInt() + "%")
-            }*/
-        }else{
-            Toast.makeText(this, "Put your image", Toast.LENGTH_SHORT).show()
-            return
-        }
-        name = findViewById<EditText>(R.id.editTextTextPersonName2).text.toString()
-        if(name == "") {
-            Toast.makeText(this, "You have an empty field", Toast.LENGTH_SHORT).show()
-            return
-        }
-        signInNewUser(mail, password)
-        val int2 = Intent()
-        val arr = arrayOf(mail, password, name, photo)
-        int2.putExtra("result.code.registration.part3", arr)
-        setResult(2, int2)
-        finish()
+            }
     }
 
-    //fun loadPhoto(view: View){
-      //  val loadIntent =
-        //    Intent(Intent.ACTION_GET_CONTENT)
-        //loadIntent.type = "*/*"
-        //startActivityForResult(loadIntent, 1)
-    //}
-
     fun loadPhoto(v: View){
-        //ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION.toString()),1)
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
+        ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.INTERNET)
+            ,1)
     }
 
     private fun signInNewUser(email: String, password: String) {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) {
             if (it.isSuccessful) {
-                val user = FirebaseAuth.getInstance().currentUser
-                Toast.makeText(this, "createUserWithEmail:success", Toast.LENGTH_SHORT).show()
+                uploadPhoto()
+                if(photoWasUploaded) {
+                    val user = FirebaseAuth.getInstance().currentUser
+                    Toast.makeText(this, "createUserWithEmail:success", Toast.LENGTH_SHORT).show()
+                    val int2 = Intent()
+                    val arr = arrayOf(mail, password, name)
+                    int2.putExtra("result.code.registration.part3", arr)
+                    setResult(1, int2)
+                    finish()
+                }else{
+                    Toast.makeText(
+                        this,
+                        "createUserWithEmail:failure:photoWasNotUploaded",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val int2 = Intent()
+                    setResult(-1, int2)
+                    finish()
+                }
             } else {
                 Toast.makeText(
                     this,
-                    "createUserWithEmail:failure: ${it.exception.toString()}",
+                    "createUserWithEmail:failure:userWasNotCreated",
                     Toast.LENGTH_SHORT
                 ).show()
+                val int2 = Intent()
+                setResult(-2, int2)
+                finish()
             }
         }
     }
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (data != null) {
-            if (data.data != null) {
-                photo = data.data.toString()
-                findViewById<ImageButton>(R.id.imageButton2).setImageURI(data.data)
-            }
-        }
-    }*/
     protected override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
@@ -169,9 +178,14 @@ class RegistrationPart3 : AppCompatActivity() {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED) {
                     if ((ContextCompat.checkSelfPermission(this,
-                            android.Manifest.permission.ACCESS_FINE_LOCATION) ==
-                                PackageManager.PERMISSION_GRANTED)) {
+                            android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+                        && (ContextCompat.checkSelfPermission(this,
+                            android.Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED)) {
                         Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
+                        val intent = Intent()
+                        intent.type = "image/*"
+                        intent.action = Intent.ACTION_GET_CONTENT
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
                     }
                 } else {
                     Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()

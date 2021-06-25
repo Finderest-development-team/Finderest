@@ -80,35 +80,36 @@ class RegistrationPart2 : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (resultCode) {
-            2 -> {
+            1 -> {
                 if(data != null) {
                     val data1 =
                         data.getStringArrayExtra("result.code.registration.part3")?.plus(answers)
                     if (data1?.let { checkForNulls(it) } == false) {
                         val int1 = Intent()
                         int1.putExtra("result.code.registration.part2", data1)
-                        setResult(1, int1)
+                        setResult(0, int1)
                         finish()
                     } else {
                         val int1 = Intent()
-                        int1.putExtra(
-                            "result.code.registration.part2",
-                            arrayOf("mail", "password", "name", "photo_uri").plus(answers)
-                        )
-                        setResult(1, int1)
+                        setResult(-3, int1)
                         finish()
                     }
                 }else{
                     val int1 = Intent()
-                    int1.putExtra(
-                        "result.code.registration.part2",
-                        arrayOf("mail", "password", "name", "photo_uri").plus(answers)
-                    )
-                    setResult(1, int1)
+                    setResult(-4, int1)
                     finish()
                 }
             }
-            else -> {Log.d("MYTAG","Smth went wrong")}
+            -1 ->{
+                val int1 = Intent()
+                setResult(-5, int1)
+                finish()
+            }
+            -2 -> {
+                val int1 = Intent()
+                setResult(-6, int1)
+                finish()
+            }
         }
     }
 }

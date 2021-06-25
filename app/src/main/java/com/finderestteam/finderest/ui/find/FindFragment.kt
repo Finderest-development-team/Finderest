@@ -37,17 +37,17 @@ class FindFragment : Fragment() {
                     if(listData.size > 0)
                         listData.clear()
                     for (dt in dataSnapshot.children){
-                        /*val person = dt.getValue(PersonData::class.java)
+                        val person = dt.getValue(PersonData::class.java)
                         if (person != null) {
                             listData.add(person)
-                        }*/
-                        val name = dt.child("userName:").value.toString()
+                        }
+                        /*val name = dt.child("userName:").value.toString()
                         val mail = dt.child("userMail:").value.toString()
                         val pass = dt.child("userPassword:").value.toString()
                         val listOfInterests = dt.child("userListOfInterests:").value.toString().split(" ").toTypedArray()
                         val pd = PersonData(name, mail, pass, listOfInterests)
                         Log.e("MYTAG", "$name $mail $pass ${listOfInterests.toString()}")
-                        listData.add(pd)
+                        listData.add(pd)*/
                     }
                     }
                     override fun onCancelled(databaseError: DatabaseError) { }

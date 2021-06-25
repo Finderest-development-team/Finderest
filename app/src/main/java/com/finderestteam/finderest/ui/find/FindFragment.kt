@@ -18,8 +18,9 @@ import java.util.*
 class FindFragment : Fragment() {
 
     private lateinit var notificationsViewModel: FindViewModel
-    private lateinit var listData: LinkedList<PersonData>
+    private lateinit var listData: MutableList<String>
     private var it1 = 0
+    private val base = FirebaseDatabase.getInstance().getReference("users")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,44 +29,36 @@ class FindFragment : Fragment() {
     ): View? {
         notificationsViewModel =
                 ViewModelProviders.of(this).get(FindViewModel::class.java)
-        val root = inflater.inflate(R.layout.person_banner, container, false)
+        val root = inflater.inflate(R.layout.fragment_find, container, false)
 
-        FirebaseDatabase.getInstance().getReference("users")
-            .addListenerForSingleValueEvent(object :
-                ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if(listData.size > 0)
-                        listData.clear()
-                    for (dt in dataSnapshot.children){
-                        val person = dt.getValue(PersonData::class.java)
-                        if (person != null) {
-                            listData.add(person)
-                        }
-                        /*val name = dt.child("userName:").value.toString()
-                        val mail = dt.child("userMail:").value.toString()
-                        val pass = dt.child("userPassword:").value.toString()
-                        val listOfInterests = dt.child("userListOfInterests:").value.toString().split(" ").toTypedArray()
-                        val pd = PersonData(name, mail, pass, listOfInterests)
-                        Log.e("MYTAG", "$name $mail $pass ${listOfInterests.toString()}")
-                        listData.add(pd)*/
-                    }
-                    }
-                    override fun onCancelled(databaseError: DatabaseError) { }
-                })
+        /*base.addValueEventListener(object: ValueEventListener{
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity, "error: cant keep up", Toast.LENGTH_SHORT).show()
+            }
 
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(listData.size > 0)
+                    listData.clear()
+                for(it in snapshot.children){
+                    val person = it.child("name").value
+                    if(person != null)
+                        listData.add(person.toString())
+                }
+            }
+        })
         drawBanner(listData, it1)
 
         root.findViewById<Button>(R.id.LikeButton).setOnClickListener {
             drawBanner(listData, it1++)
         }
 
-        root.findViewById<Button>(R.id.SkipButton).setOnClickListener { }
+        root.findViewById<Button>(R.id.SkipButton).setOnClickListener { }*/
 
         return root
     }
 
     @SuppressLint("CutPasteId")
-    private fun drawBanner(listDt: LinkedList<PersonData>, it: Int){
+    private fun drawBanner(listDt: MutableList<PersonData>, it: Int){
 
         val listView = requireActivity().findViewById<ListView>(R.id.BannerListOfInterests1)
 
@@ -87,4 +80,7 @@ class FindFragment : Fragment() {
         }
     }
 }
+
+
+
 

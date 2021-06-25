@@ -1,21 +1,23 @@
 package com.finderestteam.finderest
 
-class PersonData{
-    lateinit var userName: String
-    lateinit var userMail: String
-    lateinit var userPassword: String
-    lateinit var userListOfInterests: String
+class PersonData(_userName:String, _userMail:String, _userPassword:String, _userListOfInterests: Array<String>){
+    private var userName = _userName
+    private var userMail = _userMail
+    private var userPassword =  _userPassword
+    private var userListOfInterests = getRidOfUninteresting(_userListOfInterests)
 
-    constructor(){
-
+    /*constructor(){
+        this.userName = ""
+        this.userMail = ""
+        this.userPassword = ""
+        this.userListOfInterests = ""
     }
-
-    constructor(_userName:String, _userMail:String, _userPassword:String, _userListOfInterests: Array<String>){
+    constructor(_userName:String, _userMail:String, _userPassword:String, _userListOfInterests: String){
         this.userName = _userName
         this.userMail = _userMail
         this.userPassword =  _userPassword
-        this.userListOfInterests = getRidOfUninteresting(_userListOfInterests)
-    }
+        this.userListOfInterests = _userListOfInterests
+    }*/
 
     private fun getRidOfUninteresting(_userListOfInterests: Array<String>): String {
         val arr = mutableListOf( "Sport", "Technologies", "Animals", "Gamer", "Education", "Parties", "Travelling", "Art", "Walking", "Books")

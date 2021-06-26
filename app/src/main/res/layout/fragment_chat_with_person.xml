@@ -34,7 +34,6 @@
             android:id="@+id/messageField"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:autofillHints=""
             android:hint="@string/enter_message"
             android:inputType="" />
     </com.google.android.material.textfield.TextInputLayout>

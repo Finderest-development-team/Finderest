@@ -10,10 +10,11 @@
         android:id="@+id/imageButton2"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/round_image"
         android:onClick="loadPhoto"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
@@ -23,7 +24,6 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:autofillHints=""
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/prompt_email"
@@ -40,7 +40,6 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:autofillHints=""
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/prompt_confirm_password"
@@ -57,7 +56,6 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:autofillHints=""
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/prompt_password"
@@ -75,7 +73,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:autofillHints=""
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/prompt_name"
@@ -102,4 +99,13 @@
         app:layout_constraintStart_toStartOf="@+id/editTextTextEmailPassword2"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailPassword2" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/uploadedPhotoRegistration"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageButton2"
+        app:layout_constraintTop_toTopOf="@+id/imageButton2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

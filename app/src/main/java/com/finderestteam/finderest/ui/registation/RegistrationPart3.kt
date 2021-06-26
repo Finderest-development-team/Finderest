@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
+import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 import java.util.jar.Manifest
 
@@ -167,7 +168,8 @@ class RegistrationPart3 : AppCompatActivity() {
             filePath = data.data
             val bitmap =
                 MediaStore.Images.Media.getBitmap(contentResolver, filePath)
-            findViewById<ImageButton>(R.id.imageButton2).setImageBitmap(bitmap)
+
+            findViewById<CircleImageView>(R.id.uploadedPhotoRegistration).setImageBitmap(bitmap)
         }
     }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,

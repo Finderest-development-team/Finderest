@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <TextView
         android:id="@+id/bannerPersonMail"
         android:layout_width="172dp"
         android:layout_height="39dp"
@@ -20,11 +20,13 @@
         android:background="@drawable/back"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text=""
+        android:text="person_mail@gmail.com"
+        android:gravity="center"
+        android:textColor="@color/buttonColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BannerPersonName"
-        tools:ignore="LabelFor,UnknownId" />
-    <EditText
+        tools:ignore="LabelFor,TextViewEdits,UnknownId,UnknownIdInLayout" />
+    <TextView
         android:id="@+id/bannerPersonName"
         android:layout_width="wrap_content"
         android:layout_height="43dp"
@@ -40,12 +42,15 @@
         android:background="@drawable/back"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text=""
+        android:text="Person_name"
+        android:textColor="@color/buttonColor"
+        android:gravity="center"
+        android:textSize="25dp"
         app:layout_constraintEnd_toStartOf="@+id/BannerPhoto"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="LabelFor" />
+        tools:ignore="LabelFor,TextViewEdits" />
 
     <TextView
         android:id="@+id/bannerText2"
@@ -58,6 +63,7 @@
         android:layout_marginBottom="0dp"
         android:layout_toStartOf="@+id/bannerPhoto"
         android:gravity="center"
+        android:textColor="@color/buttonColor"
         android:text="@string/interests"
         app:layout_constraintBottom_toTopOf="@+id/BannerListOfInterests1"
         app:layout_constraintStart_toStartOf="parent" />
@@ -77,7 +83,8 @@
         app:layout_constraintEnd_toStartOf="@+id/BannerPhoto"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="UnknownId" />
+        tools:ignore="UnknownId,UnknownIdInLayout"
+        android:textColor="@color/buttonColor"/>
 
     <ImageView
         android:id="@+id/bannerPhoto"
@@ -90,12 +97,14 @@
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"
         android:background="@drawable/back"
-        android:contentDescription=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
     <Button
         android:id="@+id/LikeButton"
+        android:background="@drawable/rounded_edittext"
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="#FFFFFF"
         android:layout_width="205dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bannerAboutMe"
@@ -104,11 +113,14 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="-1dp"
         android:layout_marginBottom="126dp"
-        android:text="Like"
-        tools:ignore="UnknownId" />
+        android:text="Add"
+        tools:ignore="UnknownId,UnknownIdInLayout" />
 
     <Button
         android:id="@+id/SkipButton"
+        android:background="@drawable/rounded_edittext"
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="#FFFFFF"
         android:layout_width="205dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"

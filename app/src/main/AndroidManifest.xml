@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.finderestteam.finderest">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,12 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.chats.NewMessageActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                        android:value=".MainActivity2"/>
+        </activity>
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".MainActivity2" />
         <activity android:name=".ui.registation.RegistrationPart1" />
         <activity android:name=".ui.registation.RegistrationPart2" />
         <activity android:name=".ui.registation.RegistrationPart3" />
-        <activity android:name=".ui.chats.Chat"
+        <activity
+            android:name=".ui.chats.Chat"
             tools:ignore="Instantiatable" />
         <activity
             android:name=".MainActivity"

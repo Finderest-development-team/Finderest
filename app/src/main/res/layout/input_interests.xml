@@ -62,7 +62,6 @@
         android:layout_width="53dp"
         android:layout_height="50dp"
         android:layout_marginTop="24dp"
-        android:autofillHints=""
         android:fontFamily="serif-monospace"
         android:inputType=""
         android:textColorLink="@color/loginBackground"

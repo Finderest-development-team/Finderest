@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
@@ -42,6 +43,7 @@ class RegistrationPart3 : AppCompatActivity() {
     private var mail:String = "mail"
     private var password:String = "password"
     private var name:String = "name"
+    private var profilePictureUrl:String = ""
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun register(view: View){
@@ -97,25 +99,30 @@ class RegistrationPart3 : AppCompatActivity() {
         val progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Uploading...")
         progressDialog.show()
-        FirebaseStorage.getInstance().getReference("images").child("$mail")
-            .putFile(filePath!!)
-            .addOnSuccessListener {
-                progressDialog.dismiss()
-                Toast.makeText(this, "Uploaded", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                progressDialog.dismiss()
-                Toast.makeText(this, "Failed " + e.message, Toast.LENGTH_SHORT)
-                    .show()
-                photoWasUploaded = false
+        val ref = FirebaseStorage.getInstance().getReference("/images/$mail")
 
+        ref.putFile(filePath!!)
+        .addOnSuccessListener {
+            ref.downloadUrl.addOnSuccessListener {
+                profilePictureUrl = it.toString()
             }
-            .addOnProgressListener { taskSnapshot ->
-                val progress =
-                    100.0 * taskSnapshot.bytesTransferred / taskSnapshot
-                        .totalByteCount
-                progressDialog.setMessage("Uploaded " + progress.toInt() + "%")
-            }
+            Log.d("PROFILE_PICTURE", profilePictureUrl)
+            progressDialog.dismiss()
+            Toast.makeText(this, "Uploaded", Toast.LENGTH_SHORT).show()
+        }
+        .addOnFailureListener { e ->
+            progressDialog.dismiss()
+            Toast.makeText(this, "Failed " + e.message, Toast.LENGTH_SHORT)
+                .show()
+            photoWasUploaded = false
+
+        }
+        .addOnProgressListener { taskSnapshot ->
+            val progress =
+                100.0 * taskSnapshot.bytesTransferred / taskSnapshot
+                    .totalByteCount
+            progressDialog.setMessage("Uploaded " + progress.toInt() + "%")
+        }
     }
 
     fun loadPhoto(v: View){
@@ -131,7 +138,7 @@ class RegistrationPart3 : AppCompatActivity() {
                     val user = FirebaseAuth.getInstance().currentUser
                     Toast.makeText(this, "createUserWithEmail:success", Toast.LENGTH_SHORT).show()
                     val int2 = Intent()
-                    val arr = arrayOf(mail, password, name)
+                    val arr = arrayOf(mail, password, name, profilePictureUrl)
                     int2.putExtra("result.code.registration.part3", arr)
                     setResult(1, int2)
                     finish()

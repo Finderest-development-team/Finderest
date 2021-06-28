@@ -99,8 +99,7 @@ class RegistrationPart1 : AppCompatActivity() {
                         FirebaseDatabase.getInstance().getReference("users")
                             .push()
                             .setValue(
-                                PersonData(arr[2], arr[0], arr[1], getRidOfUninteresting(arrayOf(
-                                    arr[3],
+                                PersonData(arr[2], arr[0], arr[1], arr[3],getRidOfUninteresting(arrayOf(
                                     arr[4],
                                     arr[5],
                                     arr[6],
@@ -109,7 +108,8 @@ class RegistrationPart1 : AppCompatActivity() {
                                     arr[9],
                                     arr[10],
                                     arr[11],
-                                    arr[12]
+                                    arr[12],
+                                    arr[13]
                                 )))
                             )
                     } else {

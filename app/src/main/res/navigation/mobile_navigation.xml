@@ -23,9 +23,9 @@
 
     <fragment
         android:id="@+id/navigation_chats"
-        android:name="com.finderestteam.finderest.ui.chats.ChatsFragment"
+        android:name="com.finderestteam.finderest.ui.chats.LatestMessages"
         android:label="@string/title_chats"
-        tools:layout="@layout/fragment_chats" >
+        tools:layout="@layout/activity_latest_messages" >
         <action
             android:id="@+id/action_navigation_chats_to_navigation_chat"
             app:destination="@id/navigation_chat" />

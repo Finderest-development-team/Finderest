@@ -23,9 +23,6 @@
         android:textColor="@color/buttonColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BannerPersonName"
-        tools:ignore="LabelFor,TextViewEdits,UnknownId,UnknownIdInLayout" />
-    <TextView
-
         tools:ignore="LabelFor,UnknownId" />
 
 

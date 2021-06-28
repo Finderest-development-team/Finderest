@@ -17,7 +17,7 @@ import com.firebase.ui.database.FirebaseListAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_chats.view.*
+import kotlinx.android.synthetic.main.activity_latest_messages.view.*
 import android.text.format.DateFormat
 
 class Chat : Fragment() {

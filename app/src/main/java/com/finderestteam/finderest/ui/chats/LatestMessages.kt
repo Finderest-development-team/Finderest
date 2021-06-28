@@ -9,23 +9,20 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.finderestteam.finderest.R
 import androidx.navigation.fragment.NavHostFragment
-import com.finderestteam.finderest.MainActivity2
-import kotlinx.android.synthetic.main.fragment_chats.view.*
+import kotlinx.android.synthetic.main.activity_latest_messages.view.*
 
 
-class ChatsFragment : Fragment() {
-
-    private lateinit var homeViewModel: ChatsViewModel
+class LatestMessages : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel = ViewModelProviders.of(this).get(ChatsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_chats, container, false)
-        root.button13.setOnClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.navigation_chat)
+        val root = inflater.inflate(R.layout.activity_latest_messages, container, false)
+        root.newChat.setOnClickListener {
+            val int = Intent(getActivity(), NewMessageActivity::class.java)
+            startActivity(int)
         }
 
         return root

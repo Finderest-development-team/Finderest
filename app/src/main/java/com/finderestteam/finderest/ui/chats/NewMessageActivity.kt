@@ -1,5 +1,6 @@
 package com.finderestteam.finderest.ui.chats
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,7 @@ import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
+import androidx.fragment.app.Fragment
 
 class NewMessageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,13 @@ class NewMessageActivity : AppCompatActivity() {
                    if (user != null) {
                        adapter.add(UserItem(user!!))
                    }
+                }
+
+                adapter.setOnItemClickListener{ item, view->
+
+                    val intent = Intent(view.context, ChatLogActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
 
                 recyclerview_newmessage.adapter = adapter

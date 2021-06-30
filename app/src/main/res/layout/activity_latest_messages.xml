@@ -7,12 +7,24 @@
     tools:context=".ui.chats.LatestMessages"
     tools:ignore="ExtraText">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_latest_messages"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
         <Button
             android:id="@+id/newChat"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="64dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/round_image"
             android:text="+"
             android:textAlignment="center"
@@ -20,4 +32,5 @@
             android:textSize="34sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

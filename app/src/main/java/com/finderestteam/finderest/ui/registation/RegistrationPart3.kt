@@ -115,7 +115,7 @@ class RegistrationPart3 : AppCompatActivity() {
 
                 user = PersonData(uid.toString(), name, mail, password, it.toString(), intent.getStringExtra("listOfInterests"))
 
-                FirebaseDatabase.getInstance().getReference("users").push().setValue(user)
+                FirebaseDatabase.getInstance().getReference("users").child(uid.toString()).setValue(user)
                     .addOnSuccessListener {
                         Toast.makeText(this, "createUserWithEmail:success", Toast.LENGTH_SHORT).show()
                     }

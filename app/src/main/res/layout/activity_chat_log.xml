@@ -17,7 +17,7 @@
         android:height="50dp"
         android:background="@drawable/rounded_edittext"
         android:gravity="center"
-        android:text="Type a  message"
+        android:hint="Type a  message"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

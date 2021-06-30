@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toStartOf="@+id/imageview_to_chatlog"
         app:layout_constraintTop_toTopOf="@+id/imageview_to_chatlog" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageview_to_chatlog"
         android:layout_width="50dp"
         android:layout_height="50dp"

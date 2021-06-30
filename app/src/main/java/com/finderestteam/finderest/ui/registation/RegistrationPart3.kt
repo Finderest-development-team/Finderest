@@ -18,10 +18,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.finderestteam.finderest.MainActivity
+import com.finderestteam.finderest.PersonData
 import com.finderestteam.finderest.R
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
@@ -39,16 +41,17 @@ class RegistrationPart3 : AppCompatActivity() {
     }
     private var filePath: Uri? = null
     private val PICK_IMAGE_REQUEST = 71
-    private var photoWasUploaded = true
     private var mail:String = "mail"
     private var password:String = "password"
     private var name:String = "name"
     private var profilePictureUrl:String = ""
+    private lateinit var user:PersonData
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun register(view: View){
         if(checkMail() && checkPass() && checkName() && checkPhoto()){
             signInNewUser(mail, password)
+            user = PersonData(null, name, mail, password, null, null)
         }
     }
 
@@ -100,22 +103,48 @@ class RegistrationPart3 : AppCompatActivity() {
         progressDialog.setTitle("Uploading...")
         progressDialog.show()
         val ref = FirebaseStorage.getInstance().getReference("/images/$mail")
+        val uid = FirebaseAuth.getInstance().uid
 
         ref.putFile(filePath!!)
         .addOnSuccessListener {
-            ref.downloadUrl.addOnSuccessListener {
-                profilePictureUrl = it.toString()
-            }
             Log.d("PROFILE_PICTURE", profilePictureUrl)
             progressDialog.dismiss()
             Toast.makeText(this, "Uploaded", Toast.LENGTH_SHORT).show()
+
+            ref.downloadUrl.addOnSuccessListener {
+
+                user = PersonData(uid.toString(), name, mail, password, it.toString(), intent.getStringExtra("listOfInterests"))
+
+                FirebaseDatabase.getInstance().getReference("users").push().setValue(user)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "createUserWithEmail:success", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener{ e ->
+                        Toast.makeText(this, "Failed " + e.message, Toast.LENGTH_SHORT)
+                            .show()
+
+                        Toast.makeText(
+                            this,
+                            "createUserWithEmail:failure:photoWasNotUploaded",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+            }
+
+            finish()
         }
         .addOnFailureListener { e ->
             progressDialog.dismiss()
             Toast.makeText(this, "Failed " + e.message, Toast.LENGTH_SHORT)
                 .show()
-            photoWasUploaded = false
 
+            Toast.makeText(
+                this,
+                "createUserWithEmail:failure:photoWasNotUploaded",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            finish()
         }
         .addOnProgressListener { taskSnapshot ->
             val progress =
@@ -123,6 +152,7 @@ class RegistrationPart3 : AppCompatActivity() {
                     .totalByteCount
             progressDialog.setMessage("Uploaded " + progress.toInt() + "%")
         }
+
     }
 
     fun loadPhoto(v: View){
@@ -134,32 +164,13 @@ class RegistrationPart3 : AppCompatActivity() {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) {
             if (it.isSuccessful) {
                 uploadPhoto()
-                if(photoWasUploaded) {
-                    val user = FirebaseAuth.getInstance().currentUser
-                    Toast.makeText(this, "createUserWithEmail:success", Toast.LENGTH_SHORT).show()
-                    val int2 = Intent()
-                    val arr = arrayOf(mail, password, name, profilePictureUrl)
-                    int2.putExtra("result.code.registration.part3", arr)
-                    setResult(1, int2)
-                    finish()
-                }else{
-                    Toast.makeText(
-                        this,
-                        "createUserWithEmail:failure:photoWasNotUploaded",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    val int2 = Intent()
-                    setResult(-1, int2)
-                    finish()
-                }
             } else {
                 Toast.makeText(
                     this,
                     "createUserWithEmail:failure:userWasNotCreated",
                     Toast.LENGTH_SHORT
                 ).show()
-                val int2 = Intent()
-                setResult(-2, int2)
+
                 finish()
             }
         }

@@ -26,7 +26,7 @@ class RegistrationPart1 : AppCompatActivity() {
         val butt = findViewById<TextView>(R.id.registrationButton)
         butt.setOnClickListener {
             val int = Intent(this, RegistrationPart2::class.java)
-            startActivityForResult(int, 1)
+            startActivity(int)
             overridePendingTransition(R.anim.transition_in, R.anim.transition_out)
         }
         val butt2 = findViewById<Button>(R.id.enterButton)
@@ -63,74 +63,5 @@ class RegistrationPart1 : AppCompatActivity() {
             }
         }
     }
-    private fun checkForNulls(array: Array<String?>): Boolean {
-        for(i in array){
-            if(i == null)
-                return true
-        }
-        return false
-    }
-    private fun getRidOfUninteresting(_userListOfInterests: Array<String>): String {
-        val arr = mutableListOf( "Sport", "Technologies", "Animals", "Gamer", "Education", "Parties", "Travelling", "Art", "Walking", "Books")
-        var str = ""
 
-        if(_userListOfInterests[0] in arr)
-        {
-            println("in")
-            for ((i, v) in _userListOfInterests.withIndex()){
-                str += "${_userListOfInterests[i]} "
-            }
-            return str
-        }
-
-        for ((i, v) in _userListOfInterests.withIndex()){
-            if(v.toBoolean())
-                str += "${arr[i]} "
-        }
-        return str
-    }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (resultCode) {
-            0 -> {
-                if (data != null) {
-                    val arr = data.getStringArrayExtra("result.code.registration.part2")
-                    if (arr?.let { checkForNulls(it) } == false) {
-                        FirebaseDatabase.getInstance().getReference("users")
-                            .push()
-                            .setValue(
-                                PersonData(arr[2], arr[0], arr[1], arr[3],getRidOfUninteresting(arrayOf(
-                                    arr[4],
-                                    arr[5],
-                                    arr[6],
-                                    arr[7],
-                                    arr[8],
-                                    arr[9],
-                                    arr[10],
-                                    arr[11],
-                                    arr[12],
-                                    arr[13]
-                                )))
-                            )
-                    } else {
-                        Toast.makeText(this, "data is null", Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    Toast.makeText(this, "data is null", Toast.LENGTH_SHORT).show()
-                }
-            }
-            -3 -> {
-                Toast.makeText(this, "Register again", Toast.LENGTH_SHORT).show()
-            }
-            -4 -> {
-                Toast.makeText(this, "Register again", Toast.LENGTH_SHORT).show()
-            }
-            -5 -> {
-                Toast.makeText(this, "Register again", Toast.LENGTH_SHORT).show()
-            }
-            -6 -> {
-                Toast.makeText(this, "Register again", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 }

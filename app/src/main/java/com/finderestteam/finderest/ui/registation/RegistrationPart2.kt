@@ -52,10 +52,12 @@ class RegistrationPart2 : AppCompatActivity() {
 
         if (questionNumber == 11)
         {
-
+            val interests = getRidOfUninteresting(answers)
             val int2 = Intent(this, RegistrationPart3::class.java)
-            startActivityForResult(int2, 2)
+            int2.putExtra("listOfInterests", interests)
+            startActivity(int2)
             overridePendingTransition(R.anim.transition_in, R.anim.transition_out)
+            finish()
         }
         else
         {
@@ -70,46 +72,24 @@ class RegistrationPart2 : AppCompatActivity() {
         }
     }
 
-    private fun checkForNulls(array: Array<String?>): Boolean {
-        for(i in array){
-            if(i == null)
-                return true
+    private fun getRidOfUninteresting(_userListOfInterests: Array<String>): String {
+        val arr = mutableListOf( "Sport", "Technologies", "Animals", "Gamer", "Education", "Parties", "Travelling", "Art", "Walking", "Books")
+        var str = ""
+
+        if(_userListOfInterests[0] in arr)
+        {
+            println("in")
+            for ((i, v) in _userListOfInterests.withIndex()){
+                str += "${_userListOfInterests[i]} "
+            }
+            return str
         }
-        return false
-    }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (resultCode) {
-            1 -> {
-                if(data != null) {
-                    val data1 =
-                        data.getStringArrayExtra("result.code.registration.part3")?.plus(answers)
-                    if (data1?.let { checkForNulls(it) } == false) {
-                        val int1 = Intent()
-                        int1.putExtra("result.code.registration.part2", data1)
-                        setResult(0, int1)
-                        finish()
-                    } else {
-                        val int1 = Intent()
-                        setResult(-3, int1)
-                        finish()
-                    }
-                }else{
-                    val int1 = Intent()
-                    setResult(-4, int1)
-                    finish()
-                }
-            }
-            -1 ->{
-                val int1 = Intent()
-                setResult(-5, int1)
-                finish()
-            }
-            -2 -> {
-                val int1 = Intent()
-                setResult(-6, int1)
-                finish()
-            }
+
+        for ((i, v) in _userListOfInterests.withIndex()){
+            if(v.toBoolean())
+                str += "${arr[i]} "
         }
+        return str
     }
+
 }

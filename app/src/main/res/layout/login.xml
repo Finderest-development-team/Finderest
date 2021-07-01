@@ -9,12 +9,12 @@
 
     <ImageView
         android:id="@+id/AppIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="187dp"
+        android:layout_height="172dp"
         android:layout_marginTop="74dp"
         android:contentDescription="@string/appImage"
         android:scaleType="center"
-        android:src="@drawable/app_logo"
+        android:src="@drawable/log"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

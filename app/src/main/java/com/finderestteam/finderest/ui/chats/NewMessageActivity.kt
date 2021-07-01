@@ -14,6 +14,9 @@ import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.activity_new_message.*
 
 class NewMessageActivity : AppCompatActivity() {
+
+    private val currentUser = LatestMessages.currentUser
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_message)
@@ -27,7 +30,7 @@ class NewMessageActivity : AppCompatActivity() {
         val USER_KEY = "USER_KEY"
     }
     private fun fetchUsers() {
-        val ref = FirebaseDatabase.getInstance().getReference("/users")
+        val ref = FirebaseDatabase.getInstance().getReference("/friends/${currentUser?.uid}")
         val currentUser = LatestMessages.currentUser
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
 

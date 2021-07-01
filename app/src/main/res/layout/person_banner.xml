@@ -93,7 +93,7 @@ android:layout_height="match_parent">
     app:layout_constraintTop_toTopOf="parent"
     tools:srcCompat="@tools:sample/avatars" />
 <Button
-    android:id="@+id/LikeButton"
+    android:id="@+id/SkipButton"
     android:layout_width="205dp"
     android:layout_height="wrap_content"
     android:layout_below="@+id/bannerAboutMe"
@@ -114,6 +114,6 @@ android:layout_height="match_parent">
     android:layout_marginStart="0dp"
     android:layout_marginEnd="0dp"
     android:layout_marginBottom="125dp"
-    android:layout_toStartOf="@+id/LikeButton"
+    android:layout_toStartOf="@+id/SkipButton"
     android:text="Skip" />
 </RelativeLayout>

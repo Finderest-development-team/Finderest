@@ -1,8 +1,8 @@
 package com.finderestteam.finderest.ui.find
 
 import android.annotation.SuppressLint
-import android.app.ProgressDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.finderestteam.finderest.PersonData
 import com.finderestteam.finderest.R
+import com.finderestteam.finderest.ui.chats.LatestMessages
+import com.finderestteam.finderest.ui.chats.UserItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 import com.squareup.picasso.Picasso
 
 class FindFragment : Fragment() {
@@ -21,6 +24,7 @@ class FindFragment : Fragment() {
     private val listDt = mutableListOf<PersonData>()
     private var it3 = 0
     private val base = FirebaseDatabase.getInstance().getReference("users")
+    private val currentUser = LatestMessages.currentUser
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,21 +38,81 @@ class FindFragment : Fragment() {
         getData()
         drawBanner()
 
-        root.findViewById<Button>(R.id.LikeButton).setOnClickListener {
-            if (listDt.size <= it3){
-                Toast.makeText(activity, "You have viewed all users", Toast.LENGTH_SHORT).show()
-                it3 = 0
-                drawBanner()
-            }else{
-                drawBanner()
-            }
-
+        root.findViewById<Button>(R.id.SkipButton).setOnClickListener {
+            drawNext()
         }
 
-        root.findViewById<Button>(R.id.SkipButton).setOnClickListener { }
+        root.findViewById<Button>(R.id.LikeButton).setOnClickListener {
+            if (listDt.size > it3){
+                match()
+            }
+
+            drawNext()
+        }
 
         return root
     }
+
+    private fun drawNext() {
+        if (listDt.size <= it3){
+            Toast.makeText(activity, "You have viewed all users", Toast.LENGTH_SHORT).show()
+            it3 = 0
+            drawBanner()
+        }else{
+            drawBanner()
+        }
+    }
+
+    private fun match() {
+
+        val ref = FirebaseDatabase.getInstance().getReference("/likes/${currentUser?.uid}")
+
+        ref.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                var flag = false
+
+                snapshot.children.forEach {
+                    val like = it.getValue(Like::class.java)
+
+                    Log.d("COMPARE_ID_MATCH", like?.fromId.toString() + " and " + listDt[it3 - 1].uid)
+
+                    if (like != null && like.fromId == listDt[it3 - 1].uid) {
+                        addToFriends()
+                        flag = true
+                        it.ref.removeValue()
+                    }
+                }
+
+                if (!flag) {
+                    sendLike()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun addToFriends() {
+        val user = listDt[it3 - 1]
+        val firstRef = FirebaseDatabase.getInstance().getReference("/friends/${currentUser?.uid}").child(user?.uid.toString())
+        val secondRef = FirebaseDatabase.getInstance().getReference("/friends/${user?.uid}").child(currentUser?.uid.toString())
+
+        firstRef.setValue(user)
+        secondRef.setValue(currentUser)
+    }
+
+    private fun sendLike() {
+        val toId = listDt[it3 - 1].uid
+        val ref = FirebaseDatabase.getInstance().getReference("/likes/$toId").push()
+
+        val newLike = Like(ref.key, currentUser?.uid, toId)
+
+        ref.setValue(newLike)
+    }
+
 
     private fun getData(){
         base.addValueEventListener(object : ValueEventListener {
@@ -58,7 +122,11 @@ class FindFragment : Fragment() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 snapshot?.children?.forEach { element ->
-                    listDt.add(element.getValue(PersonData::class.java)!!)
+                    val user = element.getValue(PersonData::class.java)
+
+                    if (user?.uid != currentUser?.uid) {
+                        listDt.add(user!!)
+                    }
                 }
             }
         })
@@ -100,7 +168,3 @@ class FindFragment : Fragment() {
         it3++
     }
 }
-
-
-
-

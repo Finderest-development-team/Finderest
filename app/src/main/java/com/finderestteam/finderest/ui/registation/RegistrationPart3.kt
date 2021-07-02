@@ -175,11 +175,12 @@ class RegistrationPart3 : AppCompatActivity() {
             }
         }
     }
-    protected override fun onActivityResult(
+
+    override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
         data: Intent?
-    ): Unit {
+    ) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null
         ) {
@@ -190,6 +191,7 @@ class RegistrationPart3 : AppCompatActivity() {
             findViewById<CircleImageView>(R.id.uploadedPhotoRegistration).setImageBitmap(bitmap)
         }
     }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,
                                             grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

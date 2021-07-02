@@ -10,6 +10,9 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import com.finderestteam.finderest.R
+import com.finderestteam.finderest.ui.chats.LatestMessages
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class RegistrationPart2 : AppCompatActivity() {
     private var answers = arrayOf("false", "false", "false", "false", "false", "false", "false", "false", "false", "false")
@@ -53,11 +56,24 @@ class RegistrationPart2 : AppCompatActivity() {
         if (questionNumber == 11)
         {
             val interests = getRidOfUninteresting(answers)
-            val int2 = Intent(this, RegistrationPart3::class.java)
-            int2.putExtra("listOfInterests", interests)
-            startActivity(int2)
-            overridePendingTransition(R.anim.transition_in, R.anim.transition_out)
+
+            val change = intent.getBooleanExtra("changeExistentInformation", false)
+
+            if (!change) {
+                val int2 = Intent(this, RegistrationPart3::class.java)
+                int2.putExtra("listOfInterests", interests)
+                startActivity(int2)
+                overridePendingTransition(R.anim.transition_in, R.anim.transition_out)
+
+            } else {
+                val user = LatestMessages.currentUser
+                val ref = FirebaseDatabase.getInstance().getReference("/users").child("${user?.uid}")
+
+                user?.userListOfInterests = interests
+                ref.setValue(user)
+            }
             finish()
+
         }
         else
         {

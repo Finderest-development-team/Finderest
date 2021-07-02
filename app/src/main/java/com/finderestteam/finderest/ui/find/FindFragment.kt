@@ -1,6 +1,7 @@
 package com.finderestteam.finderest.ui.find
 
 import android.annotation.SuppressLint
+import android.app.Person
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -36,15 +37,15 @@ class FindFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_find, container, false)
 
         getData()
-        drawBanner()
 
         root.findViewById<Button>(R.id.SkipButton).setOnClickListener {
             drawNext()
         }
 
         root.findViewById<Button>(R.id.LikeButton).setOnClickListener {
-            if (listDt.size > it3){
-                match()
+            if (listDt.size >= it3){
+                Log.d("ID_ARRAY", listDt[it3].uid.toString())
+                match(listDt[it3])
             }
 
             drawNext()
@@ -54,6 +55,9 @@ class FindFragment : Fragment() {
     }
 
     private fun drawNext() {
+
+        it3++
+
         if (listDt.size <= it3){
             Toast.makeText(activity, "You have viewed all users", Toast.LENGTH_SHORT).show()
             it3 = 0
@@ -63,7 +67,7 @@ class FindFragment : Fragment() {
         }
     }
 
-    private fun match() {
+    private fun match(user: PersonData) {
 
         val ref = FirebaseDatabase.getInstance().getReference("/likes/${currentUser?.uid}")
 
@@ -75,17 +79,17 @@ class FindFragment : Fragment() {
                 snapshot.children.forEach {
                     val like = it.getValue(Like::class.java)
 
-                    Log.d("COMPARE_ID_MATCH", like?.fromId.toString() + " and " + listDt[it3 - 1].uid)
+                    Log.d("COMPARE_ID_MATCH", like?.fromId.toString() + " and " + user.uid)
 
-                    if (like != null && like.fromId == listDt[it3 - 1].uid) {
-                        addToFriends()
+                    if (like != null && like.fromId == user.uid) {
+                        addToFriends(user)
                         flag = true
                         it.ref.removeValue()
                     }
                 }
 
                 if (!flag) {
-                    sendLike()
+                    sendLike(user)
                 }
             }
 
@@ -95,8 +99,7 @@ class FindFragment : Fragment() {
         })
     }
 
-    private fun addToFriends() {
-        val user = listDt[it3 - 1]
+    private fun addToFriends(user: PersonData) {
         val firstRef = FirebaseDatabase.getInstance().getReference("/friends/${currentUser?.uid}").child(user?.uid.toString())
         val secondRef = FirebaseDatabase.getInstance().getReference("/friends/${user?.uid}").child(currentUser?.uid.toString())
 
@@ -104,13 +107,34 @@ class FindFragment : Fragment() {
         secondRef.setValue(currentUser)
     }
 
-    private fun sendLike() {
-        val toId = listDt[it3 - 1].uid
-        val ref = FirebaseDatabase.getInstance().getReference("/likes/$toId").push()
+    private fun sendLike(user: PersonData) {
+        val toId = user.uid
+        val ref = FirebaseDatabase.getInstance().getReference("/likes/$toId")
 
         val newLike = Like(ref.key, currentUser?.uid, toId)
 
-        ref.setValue(newLike)
+        ref.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                var flag = false
+
+                snapshot.children.forEach {
+                    val like = it.getValue(Like::class.java)
+
+                    if (like != null && like.fromId == currentUser?.uid) {
+                        flag = true
+                    }
+                }
+
+                if (!flag) {
+                    ref.push().setValue(newLike)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 
 
@@ -128,6 +152,8 @@ class FindFragment : Fragment() {
                         listDt.add(user!!)
                     }
                 }
+
+                drawBanner()
             }
         })
     }
@@ -139,6 +165,7 @@ class FindFragment : Fragment() {
             Toast.makeText(activity, "There are no users yet", Toast.LENGTH_SHORT).show()
             return
         }
+
         if(FirebaseAuth.getInstance().currentUser.email == listDt[it3].userMail){
             it3++
         }
@@ -165,6 +192,5 @@ class FindFragment : Fragment() {
         }else{
             Toast.makeText(activity, "Cant get a user", Toast.LENGTH_SHORT).show()
         }
-        it3++
     }
 }
